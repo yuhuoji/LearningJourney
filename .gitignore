@@ -1,8 +1,42 @@
+# **/test/
+/node_modules/
+
 # Compiled class file
 *.class
 
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+**/out/
+*.ipr
+*.iml
+*.iws
+.idea/
+
+# Maven
+target/
+**/target/
+
+# Mac
+.DS_Store/
+
+# local env files
+.env.local
+.env.*.local
+
 # Log file
 *.log
+
+# Editor directories and files
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # BlueJ files
 *.ctxt
@@ -16,8 +50,14 @@
 *.nar
 *.ear
 *.zip
+*.tar
 *.tar.gz
 *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# others
+*.pid
+*.orig
+temp/
