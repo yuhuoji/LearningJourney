@@ -1,7 +1,7 @@
 # Learning Journey
 ------
 
-https://img.shields.io/static/v1?label=<LABEL>&message=<JAVA>&color=<COLOR>
+
 
 
 
@@ -13,11 +13,35 @@ https://img.shields.io/static/v1?label=<LABEL>&message=<JAVA>&color=<COLOR>
 
 
 
-## Background
+## Background 项目简介
 
 ------
 
 Your team will develop a Learning Journey Application for BUPT International School  students.
+
+
+
+## 系统设计
+
+------
+
+
+
+## 项目开发环境
+
+------
+
+
+
+##  项目结构
+
+------
+
+
+
+## 界面预览
+
+------
 
 
 

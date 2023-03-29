@@ -36,16 +36,14 @@
 
 1. git&github 配置https://blog.csdn.net/u011535541/article/details/83379151?spm=1001.2014.3001.5506 <u>github官方指南</u>  
    - git branch
-   - git status, add, 
+   - git status, add
    - git commit -m "时间，改动，描述"
    - git pull, git push  
    - git merge, git pull后手动更新冲突
    - gitignore  git rm -r --cached .
-
-2. jdk1.8 
-3. maven
-4. javafx <u>bilibli BV1Qf4y1F7Zv</u>
-5. Typora BV14x4y137Kd
+2. jdk使用1.8 
+4. javafx 可以看一下<u>bilibli BV1Qf4y1F7Zv</u>入门
+5. Typora 使用教程BV14x4y137Kd，用于编辑markdown
 6. css
 7. Native Compiling打包，<u>用IntelliJ IDEA的可视化工具</u>
 8. input and output data

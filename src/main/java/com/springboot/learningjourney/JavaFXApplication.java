@@ -1,5 +1,6 @@
-package com.group60.learningjourney;
+package com.springboot.learningjourney;
 
+import com.springboot.learningjourney.view.LoginView;
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +13,7 @@ import java.util.Objects;
 @SpringBootApplication
 public class JavaFXApplication extends AbstractJavaFxApplicationSupport {
     public static void main(String[] args) {
-        launch(JavaFXApplication.class, args);
+        launch(JavaFXApplication.class, LoginView.class, args);
     }
 
     @Override
