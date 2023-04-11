@@ -31,6 +31,7 @@ public class JavaFXApplication extends Application {
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("FXML load error.");
         }
     }
 

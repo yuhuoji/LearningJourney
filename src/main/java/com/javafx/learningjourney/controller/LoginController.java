@@ -17,16 +17,6 @@ public class LoginController {
     private Text text;
 
     @FXML
-    private Button addButton;
-
-    @FXML
-    private Button deleteButton;
-
-    @FXML
-    private Button checkButton;
-
-
-    @FXML
     public void onClick(ActionEvent event) {
         System.out.println("enter");
         System.out.println("root = " + fileDAO.getRootDirectoryPath()); //打印根目录
