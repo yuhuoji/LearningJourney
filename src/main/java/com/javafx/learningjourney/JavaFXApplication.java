@@ -33,6 +33,7 @@ public class JavaFXApplication extends Application {
             e.printStackTrace();
             System.out.println("FXML load error.");
         }
+
     }
 
     @Override

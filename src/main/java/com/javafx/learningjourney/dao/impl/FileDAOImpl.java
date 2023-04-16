@@ -33,4 +33,6 @@ public class FileDAOImpl implements FileDAO {
 
     }
 
+    //查看项目根目录的同级是否有名字为“LearningJourneyFiles”的文件夹，如果没有则创建
+
 }
