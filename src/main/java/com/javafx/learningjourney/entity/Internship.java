@@ -4,18 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 
-//lombok插件
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course {
+public class Internship {
     private String name;
     private String path;
     private String description;
-    private Integer mark;
-    private Integer creditValue;
-    private YearMonth semester;
-    private String teacher;
+    private String experience;
+    private LocalDate startTime;
+    private LocalDate endTime;
+    private String company;
+    private String department;
+    private String skill;
 }

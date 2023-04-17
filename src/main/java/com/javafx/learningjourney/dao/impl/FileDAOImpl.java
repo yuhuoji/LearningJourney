@@ -30,11 +30,11 @@ public class FileDAOImpl implements FileDAO {
 
 
     /**
-     * TODO 获得所有文件夹
+     * TODO
      * 获取指定目录下的所有文件
      *
      * @param root 指定目录
-     * @return 指定目录下的所有文件
+     * @return 返回树的根节点
      */
     @Override
     public TreeItem getAllFiles(Path root) {
@@ -180,11 +180,13 @@ public class FileDAOImpl implements FileDAO {
         return true;
     }
 
-    //TODO
-    //fromPath 文件夹->全部移动
-    //          or文件->移动文件
-    //toPath 文件夹
-    //已经存在
+    /**
+     * 移动文件或文件夹
+     *
+     * @param fromPath 需要移动的文件和文件夹的路径
+     * @param toPath   目的路径
+     * @return 是否移动成功
+     */
     @Override
     public boolean moveFileOrFolder(Path fromPath, Path toPath) {
 
@@ -198,7 +200,7 @@ public class FileDAOImpl implements FileDAO {
         }
 
 
-        if(Files.exists(toPath.resolve(fromPath.getFileName()))){ //如果toPath存在和fromPath相同名字的文件或文件夹则直接返回false
+        if (Files.exists(toPath.resolve(fromPath.getFileName()))) { //如果toPath存在和fromPath相同名字的文件或文件夹则直接返回false
             return false;
         }
 

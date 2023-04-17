@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
-//init -> start -> stop
+//运行顺序 init -> start -> stop
 public class JavaFXApplication extends Application {
 
     private static Stage stage; //舞台

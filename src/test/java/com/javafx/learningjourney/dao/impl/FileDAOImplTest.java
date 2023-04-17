@@ -14,7 +14,7 @@ import java.nio.file.Paths;
  */
 class FileDAOImplTest {
 
-    static Path testFolderPath;
+    private static Path testFolderPath;
 
     private final FileDAO fileDAO = new FileDAOImpl();
 
