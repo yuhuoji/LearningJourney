@@ -5,6 +5,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class RootPathUtil {
+    /**
+     * 获取项目根目录的绝对路径
+     * @return 项目根目录的绝对路径
+     */
     public Path getRootPath() {
         // 获取打包后JAR文件所在的目录位置
         Path jarPath = null;
