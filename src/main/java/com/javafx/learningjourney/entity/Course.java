@@ -18,4 +18,5 @@ public class Course {
     private Integer creditValue;
     private YearMonth semester;
     private String teacher;
+
 }
