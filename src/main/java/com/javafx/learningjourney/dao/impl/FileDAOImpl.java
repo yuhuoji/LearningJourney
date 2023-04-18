@@ -4,12 +4,13 @@ import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.util.RootPathUtil;
 import javafx.scene.control.TreeItem;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class FileDAOImpl implements FileDAO {
     private final RootPathUtil rootPathUtil;
@@ -30,31 +31,82 @@ public class FileDAOImpl implements FileDAO {
 
 
     /**
-     * TODO
-     * 获取指定目录下的所有文件
+     * 递归遍历指定路径下的所有文件和文件夹，并将它们作为TreeItem的子节点添加，最后返回TreeItem的树形结构。
+     * dfs
      *
-     * @param root 指定目录
-     * @return 返回树的根节点
+     * @param path 树形结构的根路径，可以是文件或者文件夹。
+     * @return 根据指定路径创建的TreeItem对象，其中包含了整个目录树的结构。
      */
     @Override
-    public  TreeItem<?>  getAllFiles(Path root) {
+    public TreeItem<Path> createTreeOfAllFilesAndFolders(Path path) {
+        if (!Files.exists(path)) { // 如果path代表的文件或文件夹不存在，则直接返回
+            return null;
+        }
 
-        TreeItem<?> rootItem = new TreeItem<>(root.getFileName().toString()); //创建根节点
+        TreeItem<Path> root = new TreeItem<>(); // 创建根节点
+
+        try {
+            if (Files.isDirectory(path) && Files.size(path) != 0) { //path代表空文件夹则直接返回
+                return null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
 
 
-        rootItem.setExpanded(true); //设置根节点展开状态
-
-        //获取指定文件夹路径
-//        File directory = new File(root.toString());
-//
-//        //遍历指定路径root下所有文件和文件夹并添加给根节点rootItem
-//        for (File file : directory.listFiles()) {
-//            TreeItem<String> item = new TreeItem<>(file.getName());
-//            item.setValue(file.getName() + "          " + file.getPath()); //设置子节点文本值，包括文件名和路径
-//            rootItem.getChildren().add(item);
+//        try {
+//            Files.list(path).forEach(p -> { // 遍历path下的所有文件和文件夹
+//                TreeItem<Path> item = new TreeItem<>(p);
+//                if (Files.isDirectory(p)) { // 如果是文件夹，则递归调用createTree()方法，并将返回值添加到子节点中。
+//                    item.getChildren().add(createTreeOfAllFilesAndFolders(p));
+//                }
+//                root.getChildren().add(item); // 将子节点添加到根节点下
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
 //        }
 
-        return rootItem;
+        return root;
+    }
+
+
+    /**
+     * TODO
+     *
+     * @param path 树形结构的根路径，可以是文件或者文件夹。
+     * @return 根据指定路径创建的TreeItem对象，其中包含了整个目录树的结构。
+     */
+    @Override
+    public TreeItem<Path> createTreeOfAllFoldersInCurrentLevel(Path path) {
+        if (!Files.exists(path)) { // 如果path代表的文件或文件夹不存在，则直接返回
+            return null;
+        }
+
+        TreeItem<Path> root = new TreeItem<>(path.getFileName()); // 创建根节点
+
+        //读取当前path路径下的所有文件夹并添加给root
+        try {
+            Files.list(path).forEach(p -> { // 遍历path下的所有文件和文件夹
+                if (Files.isDirectory(p)) { // 如果是文件夹，则添加到子节点中
+                    TreeItem<Path> item = new TreeItem<>(p.getFileName());
+                    root.getChildren().add(item);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        try {
+//            if (Files.isDirectory(path) && Files.size(path) == 0) { //path代表空文件夹则直接返回
+//                System.out.println( "createTreeOfAllFilesAndFoldersInCurrentLevel "+Files.isDirectory(path) + ", " + Files.size(path));
+//                return null;
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        return root;
     }
 
     /**

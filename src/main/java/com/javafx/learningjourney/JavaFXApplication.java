@@ -14,9 +14,9 @@ import java.util.Objects;
 //运行顺序 init -> start -> stop
 public class JavaFXApplication extends Application {
 
-    private static Stage stage; //舞台
-
-    public static Path rootDirectoryPath;
+    public static Path rootDirectoryPath; //root path
+    public static Path fileStoragePath; //file storage path
+    private static Stage stage; //主舞台
 
     public static void main(String[] args) {
         launch(args);
@@ -46,7 +46,8 @@ public class JavaFXApplication extends Application {
     public void init() throws Exception {
         super.init();
         rootDirectoryPath = new FileDAOImpl().getRootDirectoryPath();
-        System.out.println("rootDirectoryPath = " + rootDirectoryPath);
+        fileStoragePath = rootDirectoryPath.resolve("LearningJourneyFiles");
+        System.out.println("rootDirectoryPath = " + rootDirectoryPath + ", fileStoragePath = " + fileStoragePath);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class JavaFXApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         JavaFXApplication.stage = primaryStage;
-        stage.setTitle("welcome");
+        stage.setTitle("Learning Journey");
 
         changeView("fxml/login.fxml"); //切换页面
 

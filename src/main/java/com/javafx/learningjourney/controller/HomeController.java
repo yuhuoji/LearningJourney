@@ -4,22 +4,49 @@ import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+
+import java.nio.file.Path;
+
+import static com.javafx.learningjourney.JavaFXApplication.fileStoragePath;
+import static com.javafx.learningjourney.JavaFXApplication.rootDirectoryPath;
 
 public class HomeController {
     private final FileDAO fileDAO;
+
     @FXML
-    private AnchorPane home;
+    private BorderPane rootPane;
+
     @FXML
-    private TreeView<?> treeView;
+    private VBox leftPane;
+
+    @FXML
+    private TreeView<Path> LearningJourneyFilesTreeView;
+
+    @FXML
+    private StackPane mainPane;
+
+    @FXML
+    private TreeView<?> mainTreeView;
+
+    @FXML
+    private HBox topPane;
+
     @FXML
     private Text title;
+
     @FXML
     private Button button;
+
+    @FXML
+    private VBox rightPane;
 
     public HomeController() {
         fileDAO = new FileDAOImpl();
@@ -33,9 +60,13 @@ public class HomeController {
     //初始化数据
     @FXML
     public void initialize() {
-        TreeView<String> tree = new TreeView<>(); //create a TreeView
-//        TreeItem<String> rootItem = fileDAO.getAllFiles(); //root
-//        rootItem.setExpanded(true); //set the root expanded
+
+        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(fileStoragePath); //root
+        rootItem.setExpanded(true); //set the root expanded
+        LearningJourneyFilesTreeView.setRoot(rootItem); //set the root to the TreeView
+        System.out.println("rootItem = " + rootItem);
+
+
 
 
     }
