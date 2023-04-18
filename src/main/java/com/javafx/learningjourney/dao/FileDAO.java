@@ -27,5 +27,5 @@ public interface FileDAO {
 
     boolean checkFileOrFolderExistence(Path root, String fileName);
 
-    TreeItem getAllFiles(Path root);
+    <T> TreeItem getAllFiles(Path root);
 }

@@ -37,22 +37,22 @@ public class FileDAOImpl implements FileDAO {
      * @return 返回树的根节点
      */
     @Override
-    public TreeItem getAllFiles(Path root) {
-        //创建根节点
-        TreeItem<String> rootItem = new TreeItem<>("文件夹");
+    public  TreeItem<?>  getAllFiles(Path root) {
 
-        //设置根节点展开状态
-        rootItem.setExpanded(true);
+        TreeItem<?> rootItem = new TreeItem<>(root.getFileName().toString()); //创建根节点
+
+
+        rootItem.setExpanded(true); //设置根节点展开状态
 
         //获取指定文件夹路径
-        File directory = new File(root.toString());
-
-        //遍历指定路径root下所有文件和文件夹并添加给根节点rootItem
-        for (File file : directory.listFiles()) {
-            TreeItem<String> item = new TreeItem<>(file.getName());
-            item.setValue(file.getName() + "          " + file.getPath()); //设置子节点文本值，包括文件名和路径
-            rootItem.getChildren().add(item);
-        }
+//        File directory = new File(root.toString());
+//
+//        //遍历指定路径root下所有文件和文件夹并添加给根节点rootItem
+//        for (File file : directory.listFiles()) {
+//            TreeItem<String> item = new TreeItem<>(file.getName());
+//            item.setValue(file.getName() + "          " + file.getPath()); //设置子节点文本值，包括文件名和路径
+//            rootItem.getChildren().add(item);
+//        }
 
         return rootItem;
     }
