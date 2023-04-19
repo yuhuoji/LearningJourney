@@ -18,6 +18,7 @@ public class JavaFXApplication extends Application {
     public static Path fileStoragePath; //file storage path
     private static Stage stage; //主舞台
 
+
     public static void main(String[] args) {
         launch(args);
     }

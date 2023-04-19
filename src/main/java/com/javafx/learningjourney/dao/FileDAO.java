@@ -27,7 +27,9 @@ public interface FileDAO {
 
     boolean checkFileOrFolderExistence(Path root, String fileName);
 
+
     TreeItem<Path> createTreeOfAllFoldersInCurrentLevel(Path root);
 
     TreeItem<Path> createTreeOfAllFilesAndFolders(Path root);
+
 }

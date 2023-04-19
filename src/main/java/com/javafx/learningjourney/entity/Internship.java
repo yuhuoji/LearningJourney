@@ -3,7 +3,6 @@ package com.javafx.learningjourney.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.nio.file.Path;
 import java.time.LocalDate;
 

@@ -37,8 +37,12 @@ class FileDAOImplTest {
 
     @Test
     void getAllFiles() {
+<<<<<<< HEAD
         Path root = Paths.get(testFolderPath.toString(),"test");
         System.out.println(root.getFileName().toString());
+=======
+
+>>>>>>> ed0a90ddb68e229a0e32352a0d0752241b968d22
     }
 
     @Test

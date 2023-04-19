@@ -22,9 +22,7 @@ class JsonUtilTest {
 
     @Test
     void saveObjectToJsonFile() {
-
         Course course = new Course("name", Paths.get("C:/"), "description", (double) 90, (double) 0.25, (double) 95, (double) 0.25, (double) 90, (double) 0.5, null, 4, YearMonth.of(2023, 4), "teacher@edu.cn");
-
         System.out.println(course);
 
         Path jsonPath = Paths.get(testFolderPath.toString(), "course.json");

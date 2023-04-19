@@ -4,13 +4,12 @@ import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.util.RootPathUtil;
 import javafx.scene.control.TreeItem;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 public class FileDAOImpl implements FileDAO {
     private final RootPathUtil rootPathUtil;

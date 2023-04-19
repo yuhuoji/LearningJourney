@@ -4,19 +4,14 @@ import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-
 import java.nio.file.Path;
 
 import static com.javafx.learningjourney.JavaFXApplication.fileStoragePath;
-import static com.javafx.learningjourney.JavaFXApplication.rootDirectoryPath;
 
 public class HomeController {
     private final FileDAO fileDAO;
@@ -65,8 +60,6 @@ public class HomeController {
         rootItem.setExpanded(true); //set the root expanded
         LearningJourneyFilesTreeView.setRoot(rootItem); //set the root to the TreeView
         System.out.println("rootItem = " + rootItem);
-
-
 
 
     }
