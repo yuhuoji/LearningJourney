@@ -29,7 +29,7 @@ public class JavaFXApplication extends Application {
      * @param fxml 切换到的fxml文件路径
      */
     public static void changeView(String fxml) {
-        System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml)); //打印fxml文件路径
+//        System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml)); //打印fxml文件路径
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -48,7 +48,7 @@ public class JavaFXApplication extends Application {
         super.init();
         rootDirectoryPath = new FileDAOImpl().getRootDirectoryPath();
         fileStoragePath = rootDirectoryPath.resolve("LearningJourneyFiles");
-        System.out.println("rootDirectoryPath = " + rootDirectoryPath + ", fileStoragePath = " + fileStoragePath);
+//        System.out.println("rootDirectoryPath = " + rootDirectoryPath + ", fileStoragePath = " + fileStoragePath);
     }
 
     @Override

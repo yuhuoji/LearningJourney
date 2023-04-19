@@ -14,7 +14,7 @@
     <left>
         <VBox fx:id="leftPane" alignment="TOP_CENTER" prefHeight="484.0" prefWidth="189.0" BorderPane.alignment="CENTER">
             <children>
-                <TreeView fx:id="LearningJourneyFilesTreeView" prefHeight="400.0" prefWidth="133.0">
+                <TreeView fx:id="learningJourneyFilesTreeView" prefHeight="400.0" prefWidth="133.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></TreeView>

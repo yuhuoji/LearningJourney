@@ -23,7 +23,7 @@ public class HomeController {
     private VBox leftPane;
 
     @FXML
-    private TreeView<Path> LearningJourneyFilesTreeView;
+    private TreeView<Path> learningJourneyFilesTreeView;
 
     @FXML
     private StackPane mainPane;
@@ -58,7 +58,7 @@ public class HomeController {
 
         TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(fileStoragePath); //root
         rootItem.setExpanded(true); //set the root expanded
-        LearningJourneyFilesTreeView.setRoot(rootItem); //set the root to the TreeView
+        learningJourneyFilesTreeView.setRoot(rootItem); //set the root to the TreeView
         System.out.println("rootItem = " + rootItem);
 
 

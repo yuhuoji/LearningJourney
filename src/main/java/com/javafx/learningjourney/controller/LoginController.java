@@ -23,8 +23,7 @@ public class LoginController {
 
     @FXML
     public void onClick(ActionEvent event) {
-        System.out.println("enter");
-        System.out.println("rootDirectoryPath = " + rootDirectoryPath);
+//        System.out.println("rootDirectoryPath = " + rootDirectoryPath);
         fileDAO.createDirectory(rootDirectoryPath, "LearningJourneyFiles"); //如果没有资料文件夹则新建
         JavaFXApplication.changeView("fxml/home.fxml"); //切换页面
     }
