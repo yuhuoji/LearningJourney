@@ -9,9 +9,10 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+
 import java.nio.file.Path;
 
-import static com.javafx.learningjourney.JavaFXApplication.fileStoragePath;
+import static com.javafx.learningjourney.JavaFXApplication.folderRootPath;
 
 public class HomeController {
     private final FileDAO fileDAO;
@@ -55,8 +56,12 @@ public class HomeController {
     //初始化数据
     @FXML
     public void initialize() {
+        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(folderRootPath); //root
+//        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFilesAndFolders(folderRootPath); //可以生成所有的文件和文件夹
 
-        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(fileStoragePath); //root
+        if (rootItem == null) {
+            rootItem = new TreeItem<>(folderRootPath.getFileName()); // 创建根节点
+        }
         rootItem.setExpanded(true); //set the root expanded
         learningJourneyFilesTreeView.setRoot(rootItem); //set the root to the TreeView
         System.out.println("rootItem = " + rootItem);

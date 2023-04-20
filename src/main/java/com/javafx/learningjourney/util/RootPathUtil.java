@@ -9,11 +9,11 @@ public class RootPathUtil {
      * 获取项目根目录的绝对路径
      * @return 项目根目录的绝对路径
      */
-    public Path getRootPath() {
+    public static Path getRootPath() {
         // 获取打包后JAR文件所在的目录位置
         Path jarPath = null;
         try {
-            jarPath = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
+            jarPath = Paths.get(RootPathUtil.class.getProtectionDomain().getCodeSource().getLocation().toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -26,5 +26,9 @@ public class RootPathUtil {
             projectDir = projectDir.getParent();
         }
         return projectDir;
+    }
+
+    public static Path getFolderRootPath(){
+        return Paths.get(getRootPath().toString(),"LearningJourneyFiles");
     }
 }

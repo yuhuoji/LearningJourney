@@ -1,6 +1,7 @@
 package com.javafx.learningjourney.dao.impl;
 
 import com.javafx.learningjourney.dao.FileDAO;
+import com.javafx.learningjourney.util.RootPathUtil;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * ！！！运行此测试文件前先修改setUp方法中的testFolderPath为自己电脑上的一个测试文件夹!!!
- * 先运行createMoreFiles和createDirectory，最后运行deleteFileOrFolder
+ * 测试文件夹在target下的LearningJourneyFiles下
  */
 class FileDAOImplTest {
 
@@ -20,14 +20,39 @@ class FileDAOImplTest {
 
     @BeforeAll
     static void setUp() {
-        testFolderPath = Paths.get("E:/Workspace"); //测试前把Paths.get中的路径更改为自己电脑上的一个测试文件夹
+        testFolderPath = RootPathUtil.getFolderRootPath();
+    }
+
+    //可以先运行这个方法，再测试其他方法
+    @Test
+    void createMoreFiles() {
+        fileDAO.createDirectory(testFolderPath,"course");
+        fileDAO.createDirectory(testFolderPath,"Internship");
+        fileDAO.createDirectory(testFolderPath,"Research");
+        fileDAO.createDirectory(testFolderPath,"Work");
+
+//        try {
+//            Files.createDirectories(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test3\\test4\\test5\\"));
+//            Files.write(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test2.log"), "hello".getBytes());
+//            Files.write(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test3\\test3.log"), "hello".getBytes());
+//            Files.write(Paths.get(testFolderPath.toString(), "test\\test01.log"), "test01".getBytes());
+//            Files.write(Paths.get(testFolderPath.toString(), "test\\test02.log"), "test02".getBytes());
+//            Files.write(Paths.get(testFolderPath.toString(), "test\\test03.log"), "test03".getBytes());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return;
+//        }
+
+        System.out.println("created success");
     }
 
     @Test
-    void getRootDirectoryPath() {
-
+    void emptyFolder() {
+        Path emptyPath = Paths.get(testFolderPath.toString());
+        fileDAO.emptyFolder(emptyPath);
     }
 
+    //最后可以运行这个方法清空文件夹
     @Test
     void deleteFileOrFolder() {
         Path deletePath = Paths.get(testFolderPath.toString(), "test");
@@ -37,12 +62,10 @@ class FileDAOImplTest {
 
     @Test
     void getAllFiles() {
-<<<<<<< HEAD
+
         Path root = Paths.get(testFolderPath.toString(),"test");
         System.out.println(root.getFileName().toString());
-=======
 
->>>>>>> ed0a90ddb68e229a0e32352a0d0752241b968d22
     }
 
     @Test
@@ -55,9 +78,20 @@ class FileDAOImplTest {
     }
 
     @Test
+    void createTreeOfAllFilesInCurrentLevel() {
+        Path path = Paths.get(testFolderPath.toString(), "test");
+        System.out.println(fileDAO.createTreeOfAllFilesInCurrentLevel(path));
+    }
+
+    @Test
     void renameFileOrFolder() {
-        System.out.println(fileDAO.renameFileOrFolder(Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2", "test2.log"), "test222.log"));
-        System.out.println(fileDAO.renameFileOrFolder(Paths.get(testFolderPath.toString(), "test", "data", "test1"), "test111"));
+        Path path1 = Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2", "test2.log");
+        System.out.println(path1);
+        System.out.println(fileDAO.renameFileOrFolder(path1, "test222.log"));
+
+        Path path2 = Paths.get(testFolderPath.toString(), "test", "data", "test1");
+        System.out.println(path2);
+        System.out.println(fileDAO.renameFileOrFolder(path2, "test111"));
     }
 
     @Test
@@ -86,18 +120,13 @@ class FileDAOImplTest {
         System.out.println(fileDAO.moveFileOrFolder(path2, path3));
     }
 
+
     @Test
-    void createMoreFiles() {
+    void getRootDirectoryPath() {
 
-        try {
-            Files.createDirectories(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test3\\test4\\test5\\"));
-            Files.write(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test2.log"), "hello".getBytes());
-            Files.write(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test3\\test3.log"), "hello".getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
+        System.out.println(RootPathUtil.getRootPath());
+        System.out.println(RootPathUtil.getFolderRootPath());
 
-        System.out.println("success");
     }
+
 }

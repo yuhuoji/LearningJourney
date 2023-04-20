@@ -5,8 +5,6 @@ import javafx.scene.control.TreeItem;
 import java.nio.file.Path;
 
 public interface FileDAO {
-    Path getRootDirectoryPath();
-
     //CRUD
 
     //create
@@ -16,6 +14,8 @@ public interface FileDAO {
     boolean deleteFileOrFolder(Path filePath);
 
     boolean deleteFileOrFolder(Path root, String fileName);
+
+    boolean emptyFolder(Path path);
 
     //update
     boolean renameFileOrFolder(Path oldNamePath, String newName);
@@ -27,8 +27,9 @@ public interface FileDAO {
 
     boolean checkFileOrFolderExistence(Path root, String fileName);
 
-
     TreeItem<Path> createTreeOfAllFoldersInCurrentLevel(Path root);
+
+    TreeItem<Path> createTreeOfAllFilesInCurrentLevel(Path root);
 
     TreeItem<Path> createTreeOfAllFilesAndFolders(Path root);
 

@@ -1,6 +1,6 @@
 package com.javafx.learningjourney;
 
-import com.javafx.learningjourney.dao.impl.FileDAOImpl;
+import com.javafx.learningjourney.util.RootPathUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +15,7 @@ import java.util.Objects;
 public class JavaFXApplication extends Application {
 
     public static Path rootDirectoryPath; //root path
-    public static Path fileStoragePath; //file storage path
+    public static Path folderRootPath; //file storage path
     private static Stage stage; //主舞台
 
 
@@ -46,8 +46,8 @@ public class JavaFXApplication extends Application {
     @Override
     public void init() throws Exception {
         super.init();
-        rootDirectoryPath = new FileDAOImpl().getRootDirectoryPath();
-        fileStoragePath = rootDirectoryPath.resolve("LearningJourneyFiles");
+        rootDirectoryPath = RootPathUtil.getRootPath();
+        folderRootPath = RootPathUtil.getFolderRootPath();
 //        System.out.println("rootDirectoryPath = " + rootDirectoryPath + ", fileStoragePath = " + fileStoragePath);
     }
 
