@@ -24,23 +24,26 @@ public class JavaFXApplication extends Application {
     }
 
     /**
-     * 切换页面
+     * change view
      *
-     * @param fxml 切换到的fxml文件路径
+     * @param fxml fxml file path
      */
     public static void changeView(String fxml) {
-//        System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml)); //打印fxml文件路径
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxml)));
-            root = fxmlLoader.load();
-            stage.setScene(new Scene(root));
+            System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
+            fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxml))); //set fxml file path
+            System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
+            root = fxmlLoader.load(); //load fxml file
+
+            //fxmlLoader.getController().onLoad();
+
+            stage.setScene(new Scene(root)); //set scene
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("FXML load error.");
+            System.out.println("FXML " + fxml + " load error.");
         }
-
     }
 
     @Override
@@ -61,7 +64,7 @@ public class JavaFXApplication extends Application {
         JavaFXApplication.stage = primaryStage;
         stage.setTitle("Learning Journey");
 
-        changeView("fxml/login.fxml"); //切换页面
+        changeView("fxml/loginView.fxml"); //切换页面
 
         primaryStage.show();
     }

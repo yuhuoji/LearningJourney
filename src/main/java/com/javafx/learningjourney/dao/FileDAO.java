@@ -32,5 +32,4 @@ public interface FileDAO {
     TreeItem<Path> createTreeOfAllFilesInCurrentLevel(Path root);
 
     TreeItem<Path> createTreeOfAllFilesAndFolders(Path root);
-
 }

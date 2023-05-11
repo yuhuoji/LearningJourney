@@ -26,22 +26,26 @@ class FileDAOImplTest {
     //可以先运行这个方法，再测试其他方法
     @Test
     void createMoreFiles() {
-        fileDAO.createDirectory(testFolderPath,"course");
+        fileDAO.createDirectory(testFolderPath,"Course");
         fileDAO.createDirectory(testFolderPath,"Internship");
         fileDAO.createDirectory(testFolderPath,"Research");
         fileDAO.createDirectory(testFolderPath,"Work");
-
-//        try {
-//            Files.createDirectories(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test3\\test4\\test5\\"));
-//            Files.write(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test2.log"), "hello".getBytes());
-//            Files.write(Paths.get(testFolderPath.toString(), "\\test\\data\\test1\\test2\\test3\\test3.log"), "hello".getBytes());
-//            Files.write(Paths.get(testFolderPath.toString(), "test\\test01.log"), "test01".getBytes());
-//            Files.write(Paths.get(testFolderPath.toString(), "test\\test02.log"), "test02".getBytes());
-//            Files.write(Paths.get(testFolderPath.toString(), "test\\test03.log"), "test03".getBytes());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return;
-//        }
+        try {
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Learning materials"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Course notes"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Course work"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Experimental project"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Cybersecurity Law"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Intellectual Property Law"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Software Engineering"));
+            Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Logistics and Supply Chain Management"));
+            Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Digital Circuits.txt"), "Digital Circuits".getBytes());
+            Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Course notes\\Course notes.txt"), "Course notes".getBytes());
+            Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Course work\\Course work.txt"), "Course work".getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
 
         System.out.println("created success");
     }

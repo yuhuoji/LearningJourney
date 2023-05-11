@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- 项目坐标 group id+artifact id+version -->
-    <groupId>com.group60</groupId>
-    <artifactId>LearningJourney</artifactId>
+    <groupId>com.javafx</groupId>
+    <artifactId>learningJourney</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>LearningJourney Maven JavaFX project 20230323</name>
+    <name>LearningJourney JavaFX project 20230323</name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -62,7 +62,6 @@
             <version>30.1-jre</version>
         </dependency>
 
-
         <!--Jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -114,24 +113,27 @@
             </plugin>
 
         </plugins>
+
         <resources>
             <!--两个resource节点都加上吧，如果你两个目录下都有配置文件的话。只加一个resource节点，只会编译这个节点配置的目录下的xml,properties文件-->
+          <!--  <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>fxml/*.fxml</include>
+                    <include>static/ico/*.png</include>
+                    &lt;!&ndash;<include>**/*.properties</include>&ndash;&gt;
+                </includes>
+                &lt;!&ndash;Maven资源过滤器&ndash;&gt;
+                <filtering>true</filtering>
+            </resource>-->
+
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/*.fxml</include>
-                    <include>**/*.properties</include>
-                </includes>
-                <!--Maven资源过滤器-->
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.fxml</include>
-                    <include>**/*.properties</include>
+                    <include>**/*</include>
                 </includes>
             </resource>
+
         </resources>
 
     </build>

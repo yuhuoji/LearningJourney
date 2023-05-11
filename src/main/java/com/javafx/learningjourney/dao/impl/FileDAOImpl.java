@@ -79,6 +79,7 @@ public class FileDAOImpl implements FileDAO {
         //遍历当前path路径下的所有文件夹并添加给root
         try (Stream<Path> list = Files.list(path)) {
             list.forEach(p -> { // 遍历path下的所有文件和文件夹
+                System.out.println("p = " + p);
                 if (Files.isDirectory(p)) { // 如果是文件夹，则添加到子节点中
                     TreeItem<Path> item = new TreeItem<>(p.getFileName());
                     root.getChildren().add(item);
@@ -130,6 +131,7 @@ public class FileDAOImpl implements FileDAO {
      * TODO 正则检查名称是否合法
      * 检查指定目录下是否存在文件夹，否则在指定目录下创建指定文件或文件夹(单级目录)
      * TODO 创建多级目录
+     *
      * @param root          指定目录
      * @param directoryName 文件夹名
      * @return 是否创建成功
