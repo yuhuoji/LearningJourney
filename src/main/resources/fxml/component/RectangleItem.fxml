@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<StackPane fx:id="rectangleItemStackPane" xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.javafx.learningjourney.controller.component.RectangleItemController"
+           style="-fx-border-color: black; -fx-border-width: 1px;">
+    <ImageView fx:id="rectangleItemImageView" fitWidth="50" fitHeight="50"/>
+    <Label fx:id="rectangleItemNameLabel"/>
+</StackPane>

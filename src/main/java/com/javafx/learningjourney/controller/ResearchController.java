@@ -26,4 +26,8 @@ public class ResearchController {
     public void initialize() {
 
     }
+
+    public void onClickTest(ActionEvent actionEvent) {
+        System.out.println("ResearchView.fxml");
+    }
 }

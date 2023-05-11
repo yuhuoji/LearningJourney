@@ -29,16 +29,13 @@ public class JavaFXApplication extends Application {
      * @param fxml fxml file path
      */
     public static void changeView(String fxml) {
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
             fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxml))); //set fxml file path
-            System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
+          //  System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
             root = fxmlLoader.load(); //load fxml file
-
-            //fxmlLoader.getController().onLoad();
-
             stage.setScene(new Scene(root)); //set scene
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +61,7 @@ public class JavaFXApplication extends Application {
         JavaFXApplication.stage = primaryStage;
         stage.setTitle("Learning Journey");
 
-        changeView("fxml/loginView.fxml"); //切换页面
+        changeView("fxml/LoginView.fxml"); //切换页面
 
         primaryStage.show();
     }
