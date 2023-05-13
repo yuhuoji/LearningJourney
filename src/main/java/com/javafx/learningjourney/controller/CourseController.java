@@ -2,6 +2,7 @@ package com.javafx.learningjourney.controller;
 
 import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.controller.component.RectangleItemController;
+import com.javafx.learningjourney.controller.information.CourseInformationController;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.fxml.FXML;
@@ -18,34 +19,30 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static com.javafx.learningjourney.JavaFXApplication.folderRootPath;
+import static com.javafx.learningjourney.JavaFXApplication.loadFXML;
+import static com.javafx.learningjourney.controller.MainController.mainController;
 
 /**
  * course and internship controller
  */
 public class CourseController {
     private final FileDAO fileDAO;
-
+    @FXML
+    public BorderPane mainContent;
     @FXML
     private ImageView courseViewSearchImage;
-
     @FXML
     private TextField courseViewSearchTextField;
-
     @FXML
     private Button courseViewSearchButton;
-
     @FXML
     private Button courseViewAddButton;
-
     @FXML
     private ScrollPane courseViewScrollPane;
-
     @FXML
     private GridPane courseViewGridPane;
-
     @FXML
     private Button courseViewTestButton;
-
 
     public CourseController() {
         fileDAO = new FileDAOImpl();
@@ -101,8 +98,6 @@ public class CourseController {
                     courseViewGridPane.getRowConstraints().add(rowConstraints); // 设置行的高度
                 }
 
-
-
           /*      // Set column and row constraints
                 ColumnConstraints columnConstraints = new ColumnConstraints();
                 columnConstraints.setPercentWidth(100.0 / columnsPerPage); // 设置长方形的宽度
@@ -118,6 +113,11 @@ public class CourseController {
                     System.out.println("Clicked: " + labelName);
                     // TODO 跳转到课程详情页面
                     //MainController.switchToPage("fxml/CourseInformation.fxml",);
+                    Node newNode = loadFXML("fxml/information/CourseInformation.fxml");
+                    System.out.println(mainContent.getScene());
+                    System.out.println(mainContent.getScene().getRoot());
+                    //CourseInformationController courseInformationController =  (CourseInformationController)mainContent.getScene().getRoot().getController();
+                    mainController.replaceMainContent(newNode);
                 });
 
             } catch (IOException e) {

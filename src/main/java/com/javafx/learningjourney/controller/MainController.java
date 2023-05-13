@@ -3,8 +3,10 @@ package com.javafx.learningjourney.controller;
 import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -22,8 +24,11 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import static com.javafx.learningjourney.JavaFXApplication.folderRootPath;
+import static com.javafx.learningjourney.JavaFXApplication.loadFXML;
 
 public class MainController {
+
+    public static MainController mainController; //存储父控制器的引用
     private final FileDAO fileDAO;
     @FXML
     private AnchorPane mainContent; ////切换页面的位置
@@ -42,6 +47,27 @@ public class MainController {
 
     public MainController() {
         this.fileDAO = new FileDAOImpl();
+        mainController = this;
+    }
+
+    /**
+     * 用于替换<AnchorPane fx:id="mainContent"/>的内容
+     * @param newNode 要替换的内容
+     */
+    @FXML
+    public void replaceMainContent(Node newNode) {
+        ObservableList<Node> items = splitPane.getItems();
+        Node oldNode = null;
+        for (Node node : items) {
+            if (node.getId() != null && node.getId().equals("mainContent")) {
+                oldNode = node;
+                break;
+            }
+        }
+        if (oldNode != null) {
+            System.out.println("newNode = " + newNode);
+            items.set(items.indexOf(oldNode), newNode);
+        }
     }
 
     /**
@@ -71,7 +97,22 @@ public class MainController {
             TreeItem<Path> selectedItem = menuTreeView.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 Path selectedPath = selectedItem.getValue();
-                switchToPage("fxml/"+String.valueOf(selectedPath)+"View.fxml",this.mainContent); //TODO
+
+                System.out.println("selectedPath = " + selectedPath);
+                ObservableList<Node> items = splitPane.getItems();
+                Node oldNode = null;
+                for (Node node : items) {
+                    if (node.getId() != null && node.getId().equals("mainContent")) {
+                        oldNode = node;
+                        break;
+                    }
+                }
+                if (oldNode != null) {
+                    Node newNode = loadFXML("fxml/" + String.valueOf(selectedPath) + "View.fxml");
+                    System.out.println("newNode = " + newNode);
+                    items.set(items.indexOf(oldNode), newNode);
+                }
+
             }
         });
 
@@ -91,29 +132,6 @@ public class MainController {
         System.out.println("onClickTestSide");
     }
 
-    /**
-     * TODO
-     * 切换页面
-     * @param fxmlPath 选中的节点名称
-     */
-    public static void switchToPage(String fxmlPath, Pane mainContent) {
-        System.out.println("switchToPage fxmlPath = " + fxmlPath);
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxmlPath));
-            fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxmlPath)));
-
-            System.out.println("fxmlLoader.getController() = " + fxmlLoader.getController());
-
-            Parent page = fxmlLoader.load();
-            mainContent.getChildren().setAll(page);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     @FXML
     public void initialize() {
         System.out.println("main initialize");
@@ -129,8 +147,19 @@ public class MainController {
         splitPane.setDividerPositions(0.2); //将splitPane分隔条位置设置为20%
         loadSidebarTreeView(); //init sidebar
         // });
-        switchToPage("fxml/CourseView.fxml",this.mainContent);
+        ObservableList<Node> items = splitPane.getItems();
+        Node oldNode = null;
+        for (Node node : items) {
+            if (node.getId() != null && node.getId().equals("mainContent")) {
+                oldNode = node;
+                break;
+            }
+        }
 
-
+        if (oldNode != null) {
+            Node newNode = loadFXML("fxml/CourseView.fxml");
+            System.out.println("newNode = " + newNode);
+            items.set(items.indexOf(oldNode), newNode);
+        }
     }
 }

@@ -5,12 +5,15 @@ import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
 
 /**
  * research and work controller
  */
 public class ResearchController {
     private final FileDAO fileDAO;
+    @FXML
+    public BorderPane mainContent;
 
 
     public ResearchController() {

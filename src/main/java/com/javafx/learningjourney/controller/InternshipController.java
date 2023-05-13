@@ -8,7 +8,7 @@ public class InternshipController {
     @FXML
     public Button internshipViewTestButton;
     @FXML
-    public BorderPane internshipBorderPane;
+    public BorderPane mainContent;
 
     @FXML
     public void initialize() {

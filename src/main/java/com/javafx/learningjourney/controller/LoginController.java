@@ -5,10 +5,12 @@ import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
-import static com.javafx.learningjourney.JavaFXApplication.rootDirectoryPath;
+import static com.javafx.learningjourney.JavaFXApplication.*;
 
 public class LoginController {
     private final FileDAO fileDAO;
@@ -30,7 +32,8 @@ public class LoginController {
         fileDAO.createDirectory(rootDirectoryPath, "LearningJourneyFiles");
         fileDAO.createDirectory(rootDirectoryPath, "LearningJourneyFiles");
 
-        JavaFXApplication.changeView("fxml/MainView.fxml"); //切换页面
+        Parent root = (Parent) loadFXML("fxml/MainView.fxml"); //切换页面
+        getStage().setScene(new Scene(root));
     }
 
     @FXML

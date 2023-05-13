@@ -15,8 +15,8 @@
     </top>
 
     <center>
-        <AnchorPane prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <SplitPane fx:id="splitPane" dividerPositions="0.1">
+        <AnchorPane prefHeight="200.0" prefWidth="600.0"  BorderPane.alignment="CENTER">
+            <SplitPane fx:id="splitPane" dividerPositions="0.1" >
                 <fx:include fx:id="sidebar" source="component/sidebar.fxml"/>
                 <!--主要内容区域-->
                 <AnchorPane fx:id="mainContent"/>
