@@ -39,7 +39,7 @@ class FileDAOImplTest {
             Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Intellectual Property Law"));
             Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Software Engineering"));
             Files.createDirectories(Paths.get(testFolderPath.toString(), "Course\\Logistics and Supply Chain Management"));
-            Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Digital Circuits.txt"), "Digital Circuits".getBytes());
+            Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Digital Circuits.json"), "Digital Circuits".getBytes());
             Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Course notes\\Course notes.txt"), "Course notes".getBytes());
             Files.write(Paths.get(testFolderPath.toString(), "Course\\Digital Circuits\\Course work\\Course work.txt"), "Course work".getBytes());
         } catch (Exception e) {

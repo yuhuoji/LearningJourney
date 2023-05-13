@@ -61,7 +61,6 @@ public class MainController {
         rootItem.setExpanded(true); //set the root expanded
 
         //通过id获取sidebar中的menuTreeView
-        //System.out.println("sidebar.getScene() = " + sidebar.lookup("#menuTreeView"));
         TreeView<Path> menuTreeView = (TreeView<Path>) sidebar.lookup("#menuTreeView");
         //System.out.println("menuTreeView = " + menuTreeView);
 
@@ -91,7 +90,6 @@ public class MainController {
     private void onClickTestSide() {
         System.out.println("onClickTestSide");
     }
-
 
     /**
      * TODO

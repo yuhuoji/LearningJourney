@@ -18,7 +18,6 @@ public class JavaFXApplication extends Application {
     public static Path folderRootPath; //file storage path
     private static Stage stage; //主舞台
 
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -32,6 +31,7 @@ public class JavaFXApplication extends Application {
         Parent root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
+            //System.out.println(JavaFXApplication.class);
             System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
             fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxml))); //set fxml file path
           //  System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
