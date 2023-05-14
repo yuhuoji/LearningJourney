@@ -7,32 +7,46 @@ import org.junit.jupiter.api.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.YearMonth;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Map;
 
 class JsonUtilTest {
 
-    private static Path testFolderPath;
+    static Course course;
+    private static Path folderRootPath;
 
     @BeforeAll
     static void setUp() {
-        System.out.println("-------");
-        testFolderPath = Paths.get("E:/Workspace");
+        folderRootPath = RootPathUtil.getFolderRootPath();
+        System.out.println("folderRootPath = " + folderRootPath);
+        System.out.println("--------------");
+        course = new Course();
+        course.setName("digit circuit");
+        course.setCreditValue(4);
+        course.setTotalMark(91d);
+        course.setSemester(YearMonth.of(2022, 1));
+        course.setTeacher("xxxxxx@xxx.com");
+        System.out.println(course);
+    }
+
+    @Test
+    void parseJsonFileToMap() {
+        Path jsonPath = Paths.get(folderRootPath.toString(), "Course/Digital Circuits/", "course.json");
+        System.out.println("jsonPath = " + jsonPath);
+        Map<String, Object> jsonMap = JsonUtil.parseJsonFileToMap(jsonPath);
+        System.out.println("jsonMap = " + jsonMap);
     }
 
     @Test
     void saveObjectToJsonFile() {
-        Course course = new Course("name", Paths.get("C:/"), "description", (double) 90, (double) 0.25, (double) 95, (double) 0.25, (double) 90, (double) 0.5, null, 4, YearMonth.of(2023, 4), "teacher@edu.cn");
-        System.out.println(course);
 
-        Path jsonPath = Paths.get(testFolderPath.toString(), "course.json");
+        Path jsonPath = Paths.get(folderRootPath.toString(), "course.json");
         System.out.println("jsonPath = " + jsonPath);
         System.out.println(JsonUtil.saveObjectToJsonFile(course, jsonPath));
     }
 
     @Test
     void readJsonFileToObject() {
-        Path jsonPath = Paths.get(testFolderPath.toString(), "course.json");
+        Path jsonPath = Paths.get(folderRootPath.toString(), "course.json");
         System.out.println("jsonPath = " + jsonPath);
         Course course = JsonUtil.readJsonFileToObject(jsonPath, Course.class);
         System.out.println(course);

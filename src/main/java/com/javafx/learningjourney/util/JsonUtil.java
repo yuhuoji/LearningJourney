@@ -1,14 +1,40 @@
 package com.javafx.learningjourney.util;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JsonUtil {
+    /**
+     * 使用 Jackson 库将 JSON 对象解析为 Map
+     *
+     * @param jsonFilePath json文件路径
+     * @return Map<key, value>
+     */
+    public static Map<String, Object> parseJsonFileToMap(Path jsonFilePath) {
+        Map<String, Object> jsonMap = new HashMap<>();
+        // 创建一个ObjectMapper对象
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // 使用ObjectMapper解析JSON文件为Map<String, Object>对象
+            jsonMap = objectMapper.readValue(jsonFilePath.toFile(), new TypeReference<Map<String, Object>>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return jsonMap;
+    }
+
     /**
      * 将java对象序列化存储到json
      *

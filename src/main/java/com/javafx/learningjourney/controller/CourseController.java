@@ -2,9 +2,10 @@ package com.javafx.learningjourney.controller;
 
 import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.controller.component.RectangleItemController;
-import com.javafx.learningjourney.controller.information.CourseInformationController;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
+import com.javafx.learningjourney.util.CustomEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,17 +19,17 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.javafx.learningjourney.JavaFXApplication.folderRootPath;
-import static com.javafx.learningjourney.JavaFXApplication.loadFXML;
-import static com.javafx.learningjourney.controller.MainController.mainController;
+import static com.javafx.learningjourney.JavaFXApplication.*;
 
 /**
  * course and internship controller
  */
 public class CourseController {
+    public static String currentCourse = "Course";
     private final FileDAO fileDAO;
     @FXML
     public BorderPane mainContent;
+    private EventHandler<CustomEvent> eventHandler; // 事件处理器
     @FXML
     private ImageView courseViewSearchImage;
     @FXML
@@ -48,6 +49,7 @@ public class CourseController {
         fileDAO = new FileDAOImpl();
     }
 
+
     //初始化数据
     @FXML
     public void initialize() {
@@ -64,7 +66,7 @@ public class CourseController {
 
         if (rootItem == null) {
             System.out.println("rootItem is null");
-            rootItem = new TreeItem<>(Paths.get(folderRootPath.toString(), "Course", "Digital Circuits").getFileName()); // 创建根节点
+            rootItem = new TreeItem<>(Paths.get(folderRootPath.toString(), "Course", "New Course").getFileName()); // 创建根节点
         }
         int row = 0;
         int column = 0;
@@ -77,7 +79,6 @@ public class CourseController {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(JavaFXApplication.class.getClassLoader().getResource("fxml/component/RectangleItem.fxml"));
-                // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/RectangleItem.fxml"));
                 Node rectangleItem = fxmlLoader.load();
                 RectangleItemController rectangleItemController = fxmlLoader.getController();
                 rectangleItemController.setLabel(folderName);
@@ -92,7 +93,6 @@ public class CourseController {
                 if (column >= columnsPerPage) { // 超过每页显示的列数，换行
                     column = 0;
                     row++;
-
                     RowConstraints rowConstraints = new RowConstraints(); // 设置行的高度
                     rowConstraints.setPrefHeight(100); // 设置长方形的高度
                     courseViewGridPane.getRowConstraints().add(rowConstraints); // 设置行的高度
@@ -111,13 +111,15 @@ public class CourseController {
                 rectangleItem.setOnMouseClicked(event -> { //设置点击事件，获取点击的label
                     String labelName = rectangleItemController.getLabelName();
                     System.out.println("Clicked: " + labelName);
-                    // TODO 跳转到课程详情页面
-                    //MainController.switchToPage("fxml/CourseInformation.fxml",);
+
+                    currentCourse = labelName; //设置当前课程
+
                     Node newNode = loadFXML("fxml/information/CourseInformation.fxml");
                     System.out.println(mainContent.getScene());
                     System.out.println(mainContent.getScene().getRoot());
-                    //CourseInformationController courseInformationController =  (CourseInformationController)mainContent.getScene().getRoot().getController();
-                    mainController.replaceMainContent(newNode);
+
+                    MainController mainController = (MainController) controllers.get(MainController.class.getSimpleName()); //获取MainController的引用
+                    mainController.replaceMainContent(newNode); //跳转页面
                 });
 
             } catch (IOException e) {
@@ -126,8 +128,7 @@ public class CourseController {
 
         }
 
-        System.out.println(" " + courseViewGridPane.getRowConstraints() + " " + courseViewGridPane.getColumnConstraints());
-
+        //System.out.println(" " + courseViewGridPane.getRowConstraints() + " " + courseViewGridPane.getColumnConstraints());
     }
 
     @FXML

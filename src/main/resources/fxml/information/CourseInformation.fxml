@@ -1,53 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane fx:id="mainContent" dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+<SplitPane fx:id="mainContent" dividerPositions="0.4782608695652174" prefHeight="400.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.javafx.learningjourney.controller.information.CourseInformationController">
-    <items>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-              <VBox fx:id="dropdownBox1" prefHeight="24.0" prefWidth="295.0">
-                  <children>
-                  <Button fx:id="dropdownButton1" mnemonicParsing="false" prefHeight="30.0" prefWidth="295.0" text="learning materials" />
-                  </children>
-              </VBox>
-            <VBox fx:id="dropdownBox2" prefHeight="21.0" prefWidth="295.0">
-               <children>
-                  <Button fx:id="dropdownButton2" mnemonicParsing="false" prefHeight="30.0" prefWidth="276.0" text="Course notes" />
-               </children>
-            </VBox>
-            <VBox fx:id="dropdownBox3" prefHeight="24.0" prefWidth="295.0">
-               <children>
-                  <Button fx:id="dropdownButton3" mnemonicParsing="false" text="course assignment" />
-               </children>
-            </VBox>
-            <VBox fx:id="dropdownBox4" prefHeight="0.0" prefWidth="295.0">
-               <children>
-                  <Button fx:id="dropdownButton4" mnemonicParsing="false" text="experimental project" />
-               </children>
-            </VBox>
-            <Button fx:id="checkButton" mnemonicParsing="false" onAction="#checkCourseScore" text="Course score" />
-         </children>
-      </VBox>
-        <VBox fx:id="courseInformationVBoxRight" prefHeight="200.0" prefWidth="100.0">
-            <children>
-                <TableView fx:id="coreModuleInfoTreeView" prefHeight="199.0" prefWidth="119.0">
-               <columns>
-                  <TableColumn prefWidth="148.0" text="Core Module Info" />
-                  
-               </columns>
-                </TableView>
-                <TableView fx:id="otherInfoTreeView" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                        <TableColumn fx:id="otherInfo" prefWidth="294.0" text="Other Info" />
-                    </columns>
-                </TableView>
-            </children>
-        </VBox>
-    </items>
+    <VBox prefHeight="200.0" prefWidth="100.0">
+        <Accordion prefHeight="398.0" prefWidth="295.0">
+            <panes>
+                <TitledPane fx:id="titledPane1" animated="false" text="Learning materials">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <TreeTableView fx:id="learningMaterialsTreeTableView" prefHeight="248.0"
+                                       prefWidth="282.0">
+                            <columns>
+                                <TreeTableColumn
+                                        prefWidth="281.0"/>
+                            </columns>
+                        </TreeTableView>
+                    </AnchorPane>
+                </TitledPane>
+                <TitledPane animated="false" text="Course notes">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                </TitledPane>
+                <TitledPane animated="false" text="Course work">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                </TitledPane>
+                <TitledPane animated="false" prefHeight="282.0" prefWidth="295.0" text="Experimental project">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                </TitledPane>
+                <TitledPane animated="false" prefHeight="282.0" prefWidth="295.0" text="Course score">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="293.0">
+                        <Button fx:id="checkButton" mnemonicParsing="false" onAction="#checkCourseScore"
+                                prefHeight="32.0" prefWidth="295.0" text="Course score"/>
+                    </AnchorPane>
+                </TitledPane>
+            </panes>
+        </Accordion>
+    </VBox>
+    <VBox fx:id="courseInformationVBoxRight" prefHeight="200.0" prefWidth="100.0">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="308.0"
+               text="Core Module Information" VBox.vgrow="ALWAYS"/>
+        <TableView fx:id="coreModuleInfoTreeView" prefHeight="346.0" prefWidth="295.0">
+            <columns>
+                <!--<TableColumn prefWidth="148.0" text="Core Module Info"/>-->
+                <TableColumn fx:id="nameColumn" editable="false" prefWidth="150" text="Key"/>
+                <TableColumn fx:id="valueColumn" prefWidth="150" text="Value"/>
+            </columns>
+        </TableView>
+        <TableView fx:id="otherInfoTreeView" prefHeight="200.0" prefWidth="100.0">
+            <columns>
+                <TableColumn fx:id="otherInfo" prefWidth="294.0" text="Other Info"/>
+            </columns>
+        </TableView>
+    </VBox>
 </SplitPane>

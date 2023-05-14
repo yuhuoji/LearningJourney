@@ -1,6 +1,5 @@
 package com.javafx.learningjourney.controller;
 
-import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.event.ActionEvent;
@@ -39,5 +38,6 @@ public class LoginController {
     @FXML
     private void initialize() {
         text.setText("Hello World!");
+        controllers.put(this.getClass().getSimpleName(), this);
     }
 }

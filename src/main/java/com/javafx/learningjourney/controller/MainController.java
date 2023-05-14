@@ -1,34 +1,22 @@
 package com.javafx.learningjourney.controller;
 
-import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
 
-import static com.javafx.learningjourney.JavaFXApplication.folderRootPath;
-import static com.javafx.learningjourney.JavaFXApplication.loadFXML;
+import static com.javafx.learningjourney.JavaFXApplication.*;
 
 public class MainController {
-
-    public static MainController mainController; //存储父控制器的引用
     private final FileDAO fileDAO;
     @FXML
     private AnchorPane mainContent; ////切换页面的位置
@@ -47,7 +35,6 @@ public class MainController {
 
     public MainController() {
         this.fileDAO = new FileDAOImpl();
-        mainController = this;
     }
 
     /**
@@ -135,6 +122,8 @@ public class MainController {
     @FXML
     public void initialize() {
         System.out.println("main initialize");
+
+        controllers.put(this.getClass().getSimpleName(), this);
 
         //Platform.runLater(() -> { // 在JavaFX线程中延迟执行
 //        System.out.println("Platform.runLater");
