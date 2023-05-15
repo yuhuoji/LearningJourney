@@ -13,7 +13,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -52,11 +55,11 @@ public class CourseInformationController {
     @FXML
     private Button checkButton;
     @FXML
+    private TableView<PropertyEntry> coreModuleInfoTreeView;
+    @FXML
     private TableColumn<PropertyEntry, String> nameColumn;
     @FXML
     private TableColumn<PropertyEntry, String> valueColumn;
-    @FXML
-    private TableView<PropertyEntry> coreModuleInfoTreeView;
     @FXML
     private TableView<Course> otherInfoTreeView;
     @FXML
@@ -89,8 +92,8 @@ public class CourseInformationController {
 
         List<TreeTableView<Path>> treeTableViewList = Arrays.asList(treeTableView1, treeTableView2, treeTableView3, treeTableView4);
         List<TreeTableColumn<Path, Path>> treeTableColumnList = Arrays.asList(treeTableColumn1, treeTableColumn2, treeTableColumn3, treeTableColumn4);
-        Cache.put("treeTableViewList", treeTableViewList);
-        Cache.put("treeTableColumnList", treeTableColumnList);
+        Cache.put("treeTableViewList", treeTableViewList); //存储treeTableViewList的引用
+        Cache.put("treeTableColumnList", treeTableColumnList); //存储treeTableColumnList的引用
 
         loadResources(1);
         loadResources(2);
@@ -126,6 +129,9 @@ public class CourseInformationController {
         // 设置 PropertyValueFactory，用于从 PropertyEntry 对象中提取属性名和属性值
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+        nameColumn.setSortable(false); //禁用排序功能
+        valueColumn.setSortable(false);
 
         //coreModuleInfoTreeView.getItems().add(type);
         coreModuleInfoTreeView.refresh();
@@ -217,11 +223,9 @@ public class CourseInformationController {
 
         });
 
-
         treeTableView.setContextMenu(contextMenu); // 为TreeTableView绑定ContextMenu
 
-        // 设置鼠标在单元格上右键单击时打开完整的菜单（包括add和delete方法）
-        treeTableView.setOnMouseClicked(event -> {
+        treeTableView.setOnMouseClicked(event -> { // 设置鼠标在单元格上右键单击时打开完整的菜单（包括add和delete方法）
             if (event.getButton() == MouseButton.SECONDARY) {
                 if (treeTableView.getSelectionModel().isEmpty()) {
                     // 空白处右键单击，只显示add方法的菜单
@@ -247,7 +251,28 @@ public class CourseInformationController {
             }
         });
 
+        treeTableView.setOnDragOver(event -> { // 允许 TreeTableView 接受拖放操作
+            if (event.getGestureSource() != treeTableView && event.getDragboard().hasFiles()) {
+                event.acceptTransferModes(TransferMode.COPY);
+            }
+            event.consume();
+        });
 
+        treeTableView.setOnDragDropped(event -> { // 处理拖放操作
+            Dragboard dragboard = event.getDragboard();
+            boolean success = false;
+            if (dragboard.hasFiles()) {
+                for (File file : dragboard.getFiles()) {
+                    String filePath = file.getAbsolutePath(); // 在这里处理获取到的文件或文件夹路径
+                    System.out.println("Dropped File Path: " + filePath);
+                    fileDAO.moveFileOrFolder(Paths.get(filePath), currentResource); //move the file or folder to the current resource folder
+                    loadResources(i);
+                }
+                success = true;
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
 
         treeTableColumn.setCellFactory(column -> { // 为列设置单元格工厂，设置方法
             TreeTableCell<Path, Path> cell = new TreeTableCell<Path, Path>() { //为treeTableColumn设置自定义的TreeTableCell
@@ -300,13 +325,25 @@ public class CourseInformationController {
     }
 
     /**
-     * TODO
+     * TODO @date 2023-05-16 查看分数
      *
      * @param actionEvent ActionEvent
      */
     @FXML
     public void checkCourseScore(ActionEvent actionEvent) {
         System.out.println("checkCourseScore");
+    }
+
+    /**
+     * @param mouseEvent MouseEvent
+     */
+    @FXML
+    public void handleTitledPaneClick(MouseEvent mouseEvent) {
+        System.out.println("handleTitledPaneClick");
+        loadResources(1); //刷新数据
+        loadResources(2);
+        loadResources(3);
+        loadResources(4);
     }
 
 

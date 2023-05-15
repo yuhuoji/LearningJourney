@@ -27,7 +27,7 @@ public class RectangleItemController {
     /**
      * @param imagePath 图片路径
      */
-    public void setImage(String imagePath) {
+    private void setImage(String imagePath) {
         Image image = new Image(imagePath);
         rectangleItemImageView.setImage(image);
     }
