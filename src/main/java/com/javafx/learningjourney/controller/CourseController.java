@@ -26,11 +26,9 @@ import static com.javafx.learningjourney.JavaFXApplication.*;
  * course and internship controller
  */
 public class CourseController {
-    public static String currentCourse = "Course";
     private final FileDAO fileDAO;
     @FXML
     public BorderPane mainContent;
-    private EventHandler<CustomEvent> eventHandler; // 事件处理器
     @FXML
     private ImageView courseViewSearchImage;
     @FXML
@@ -54,6 +52,7 @@ public class CourseController {
     @FXML
     public void initialize() {
         System.out.println("course initialize");
+        Cache.put(this.getClass().getSimpleName(), this); //将当前controller的引用放入缓存
         loadCourses();
     }
 
@@ -112,15 +111,17 @@ public class CourseController {
                     String labelName = rectangleItemController.getLabelName();
                     System.out.println("Clicked: " + labelName);
 
-                    currentCourse = labelName; //设置当前课程
+                    Cache.put("currentCourse", labelName);
+
+                    System.out.println("currentPath: " + Cache.get("currentPath"));
+                    Path newPath = Paths.get(((Path) (Cache.get("currentPath"))).toString(), labelName);
+                    System.out.println("newPath: " + newPath);
+                    Cache.put("currentPath", newPath); //update current path
 
                     Node newNode = loadFXML("fxml/information/CourseInformation.fxml");
-                    System.out.println(mainContent.getScene());
-                    System.out.println(mainContent.getScene().getRoot());
-
-                   // MainController mainController = (MainController) controllers.get(MainController.class.getSimpleName()); //获取MainController的引用
-                    MainController mainController = (MainController)Cache.get("MainController");
-                    mainController.replaceMainContent(newNode); //跳转页面
+                    Pane root = (Pane) Cache.get("mainContent");
+                    root.getChildren().clear();
+                    root.getChildren().add(newNode);
                 });
 
             } catch (IOException e) {

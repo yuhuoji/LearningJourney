@@ -114,7 +114,7 @@ public class FileDAOImpl implements FileDAO {
             list.forEach(p -> { // 遍历path下的所有文件和文件夹
                 // 如果是文件且不是json文件，则添加到子节点中
                 if (Files.isDirectory(p) || (!Files.isDirectory(p) && !p.getFileName().toString().endsWith(".json"))) {
-                    System.out.println(p);
+               //     System.out.println(p);
                     TreeItem<Path> item = new TreeItem<>(p.getFileName());
                     root.getChildren().add(item);
                 }

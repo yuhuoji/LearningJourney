@@ -12,6 +12,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,7 +22,7 @@ import static com.javafx.learningjourney.JavaFXApplication.*;
 public class MainController {
     private final FileDAO fileDAO;
     @FXML
-    private AnchorPane mainContent; ////切换页面的位置
+    private Pane mainContent; ////切换页面的位置
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -37,27 +38,6 @@ public class MainController {
 
     public MainController() {
         this.fileDAO = new FileDAOImpl();
-    }
-
-    /**
-     * 用于替换<AnchorPane fx:id="mainContent"/>的内容
-     *
-     * @param newNode 要替换的内容
-     */
-    @FXML
-    public void replaceMainContent(Node newNode) {
-        ObservableList<Node> items = splitPane.getItems();
-        Node oldNode = null;
-        for (Node node : items) {
-            if (node.getId() != null && node.getId().equals("mainContent")) {
-                oldNode = node;
-                break;
-            }
-        }
-        if (oldNode != null) {
-            System.out.println("newNode = " + newNode);
-            items.set(items.indexOf(oldNode), newNode);
-        }
     }
 
     /**
@@ -87,23 +67,18 @@ public class MainController {
             TreeItem<Path> selectedItem = menuTreeView.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 Path selectedPath = selectedItem.getValue();
-
                 System.out.println("selectedPath = " + selectedPath);
-                ObservableList<Node> items = splitPane.getItems();
-                Node oldNode = null;
-                for (Node node : items) {
-                    if (node.getId() != null && node.getId().equals("mainContent")) {
-                        oldNode = node;
-                        break;
-                    }
-                }
-                if (oldNode != null) {
-                    Node newNode = loadFXML("fxml/" + String.valueOf(selectedPath) + "View.fxml");
-                    System.out.println("newNode = " + newNode);
-                    items.set(items.indexOf(oldNode), newNode);
-                }
 
+                Cache.put("currentView", selectedPath + "View"); //update current view
+                Cache.put("currentPath", Paths.get(
+                        ((Path) (Cache.get("folderRootPath"))).toString(), selectedPath.toString())
+                ); //update current path
+                Node newNode = loadFXML("fxml/" + selectedPath + "View.fxml");
+                Pane root = (Pane) Cache.get("mainContent");
+                root.getChildren().clear();
+                root.getChildren().add(newNode);
             }
+
         });
 
     }
@@ -124,7 +99,6 @@ public class MainController {
     public void initialize() {
         System.out.println("main initialize");
 
-
         Cache.put(this.getClass().getSimpleName(), this); //将MainController放入缓存
 
         Cache.put("mainContent", mainContent); //将页面替换的根节点放入缓存
@@ -132,18 +106,16 @@ public class MainController {
         splitPane.setDividerPositions(0.2); //将splitPane分隔条位置设置为20%
         loadSidebarTreeView(); //init sidebar
 
-        ObservableList<Node> items = splitPane.getItems();
-
-        Node newNode = loadFXML("fxml/CourseView.fxml");
         Cache.put("currentView", "CourseView"); //update current view
         Path currentPath = Paths.get(((Path) Cache.get("currentPath")).toString(), "Course");
         System.out.println("currentPath = " + currentPath);
         Cache.put("currentPath", currentPath); //update current path
-
+        Node newNode = loadFXML("fxml/CourseView.fxml");
         System.out.println("newNode = " + newNode);
-        Node oldNode = (Node) Cache.get("mainContent");
-        System.out.println("oldNode = " + oldNode);
-        items.set(items.indexOf(oldNode), newNode); //将mainContent替换为CourseView
+
+        Pane root = (Pane) Cache.get("mainContent");
+        root.getChildren().clear();
+        root.getChildren().add(newNode);
 
     }
 }
