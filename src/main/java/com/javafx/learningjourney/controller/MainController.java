@@ -2,6 +2,7 @@ package com.javafx.learningjourney.controller;
 
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
+import com.javafx.learningjourney.util.Cache;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static com.javafx.learningjourney.JavaFXApplication.*;
 
@@ -39,6 +41,7 @@ public class MainController {
 
     /**
      * 用于替换<AnchorPane fx:id="mainContent"/>的内容
+     *
      * @param newNode 要替换的内容
      */
     @FXML
@@ -109,9 +112,7 @@ public class MainController {
     @FXML
     public void onClick() {
         System.out.println("MainView.fxml test");
-//        System.out.println("splitPane =" + splitPane);
-//        System.out.println("navbar =" + navbar);
-//        System.out.println("sidebar =" + sidebar);
+
     }
 
     @FXML
@@ -123,32 +124,26 @@ public class MainController {
     public void initialize() {
         System.out.println("main initialize");
 
-        controllers.put(this.getClass().getSimpleName(), this);
 
-        //Platform.runLater(() -> { // 在JavaFX线程中延迟执行
-//        System.out.println("Platform.runLater");
+        Cache.put(this.getClass().getSimpleName(), this); //将MainController放入缓存
 
-//        System.out.println("sidebarText = " + sidebarText);
-//        System.out.println("splitPane =" + splitPane);
-//        System.out.println("navbar =" + navbar);
-//        System.out.println("sidebar =" + sidebar);
+        Cache.put("mainContent", mainContent); //将页面替换的根节点放入缓存
 
         splitPane.setDividerPositions(0.2); //将splitPane分隔条位置设置为20%
         loadSidebarTreeView(); //init sidebar
-        // });
-        ObservableList<Node> items = splitPane.getItems();
-        Node oldNode = null;
-        for (Node node : items) {
-            if (node.getId() != null && node.getId().equals("mainContent")) {
-                oldNode = node;
-                break;
-            }
-        }
 
-        if (oldNode != null) {
-            Node newNode = loadFXML("fxml/CourseView.fxml");
-            System.out.println("newNode = " + newNode);
-            items.set(items.indexOf(oldNode), newNode);
-        }
+        ObservableList<Node> items = splitPane.getItems();
+
+        Node newNode = loadFXML("fxml/CourseView.fxml");
+        Cache.put("currentView", "CourseView"); //update current view
+        Path currentPath = Paths.get(((Path) Cache.get("currentPath")).toString(), "Course");
+        System.out.println("currentPath = " + currentPath);
+        Cache.put("currentPath", currentPath); //update current path
+
+        System.out.println("newNode = " + newNode);
+        Node oldNode = (Node) Cache.get("mainContent");
+        System.out.println("oldNode = " + oldNode);
+        items.set(items.indexOf(oldNode), newNode); //将mainContent替换为CourseView
+
     }
 }

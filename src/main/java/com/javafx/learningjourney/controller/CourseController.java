@@ -4,6 +4,7 @@ import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.controller.component.RectangleItemController;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
+import com.javafx.learningjourney.util.Cache;
 import com.javafx.learningjourney.util.CustomEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -48,7 +49,6 @@ public class CourseController {
     public CourseController() {
         fileDAO = new FileDAOImpl();
     }
-
 
     //初始化数据
     @FXML
@@ -118,7 +118,8 @@ public class CourseController {
                     System.out.println(mainContent.getScene());
                     System.out.println(mainContent.getScene().getRoot());
 
-                    MainController mainController = (MainController) controllers.get(MainController.class.getSimpleName()); //获取MainController的引用
+                   // MainController mainController = (MainController) controllers.get(MainController.class.getSimpleName()); //获取MainController的引用
+                    MainController mainController = (MainController)Cache.get("MainController");
                     mainController.replaceMainContent(newNode); //跳转页面
                 });
 

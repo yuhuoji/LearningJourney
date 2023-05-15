@@ -1,5 +1,6 @@
 package com.javafx.learningjourney;
 
+import com.javafx.learningjourney.util.Cache;
 import com.javafx.learningjourney.util.RootPathUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ import java.util.Objects;
 
 //运行顺序 init -> start -> stop
 public class JavaFXApplication extends Application {
-
     public static Path rootDirectoryPath; //root path
     public static Path folderRootPath; //file storage path
     private static Stage stage; //主舞台
@@ -59,9 +59,10 @@ public class JavaFXApplication extends Application {
     @Override
     public void init() throws Exception {
         super.init();
+        Cache.put("rootDirectoryPath", RootPathUtil.getRootPath());
         rootDirectoryPath = RootPathUtil.getRootPath();
+        Cache.put("folderRootPath", RootPathUtil.getFolderRootPath());
         folderRootPath = RootPathUtil.getFolderRootPath();
-//        System.out.println("rootDirectoryPath = " + rootDirectoryPath + ", fileStoragePath = " + fileStoragePath);
     }
 
     @Override
@@ -72,9 +73,12 @@ public class JavaFXApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         JavaFXApplication.stage = primaryStage;
+        Cache.put("stage", primaryStage);
         stage.setTitle("Learning Journey");
 
         Parent root = (Parent) loadFXML("fxml/LoginView.fxml"); //切换页面
+        Cache.put("currentView", "LoginView");
+
         stage.setScene(new Scene(root)); //set scene
         primaryStage.show();
     }
