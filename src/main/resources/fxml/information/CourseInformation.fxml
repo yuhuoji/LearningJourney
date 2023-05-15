@@ -62,7 +62,7 @@
             </panes>
         </Accordion>
     </VBox>
-    <VBox fx:id="courseInformationVBoxRight" prefHeight="200.0" prefWidth="100.0">
+    <VBox prefHeight="200.0" prefWidth="100.0">
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="308.0" text="Core Module Information" VBox.vgrow="ALWAYS" />
         <TableView fx:id="coreModuleInfoTreeView" prefHeight="346.0" prefWidth="295.0">
             <columns>

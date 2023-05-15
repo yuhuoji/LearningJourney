@@ -25,7 +25,6 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -57,8 +56,6 @@ public class CourseInformationController {
     @FXML
     private TableColumn<PropertyEntry, String> valueColumn;
     @FXML
-    private VBox courseInformationVBoxRight;
-    @FXML
     private TableView<PropertyEntry> coreModuleInfoTreeView;
     @FXML
     private TableView<Course> otherInfoTreeView;
@@ -70,7 +67,7 @@ public class CourseInformationController {
     }
 
     /**
-     * TODO
+     * TODO @date 2023-05-16 四个创建文件夹
      */
     @FXML
     public void initialize() {
@@ -165,7 +162,6 @@ public class CourseInformationController {
                 treeTableColumn = treeTableColumn1;
                 break;
         }
-        //Learning materials
         Path currentCoursePath = (Path) Cache.get("currentPath");
         Path currentResource = currentCoursePath.resolve(resourceStr);
         System.out.println("currentResource = " + currentResource);
@@ -178,6 +174,8 @@ public class CourseInformationController {
             System.out.println("rootItem = " + rootItem);
         }
         rootItem.setExpanded(true); //set the root expanded
+        treeTableView.setRoot(rootItem);
+        treeTableView.setShowRoot(false);
 
         treeTableColumn.setCellValueFactory(param -> param.getValue().valueProperty()); //为列设置单元格值工厂，绑定值
 
@@ -198,7 +196,6 @@ public class CourseInformationController {
             }
             loadResources(i); //FIXME @date 2023-05-15 刷新treeTableView，重新加载资源
         });
-        contextMenu.getItems().add(addItem);
         MenuItem deleteItem = new MenuItem("delete");
         deleteItem.setOnAction(event -> { //设置删除文件的方法
             TreeItem<?> selectedItem = treeTableView.getSelectionModel().getSelectedItem();
@@ -219,22 +216,38 @@ public class CourseInformationController {
             }
 
         });
-        contextMenu.getItems().add(deleteItem);
 
-   /*     treeTableView.setContextMenu(contextMenu); // 将菜单添加到TreeView
 
-        treeTableView.setOnMouseClicked(event -> { // 添加TreeView的鼠标单击事件处理程序
-            if (event.getButton() == MouseButton.SECONDARY) { // 检查是否是右键单击
-                if (treeTableView.getSelectionModel().isEmpty()) { // 检查是否未选择任何单元格
-                    contextMenu.getItems().remove(deleteItem); // 从菜单中移除删除选项
+        treeTableView.setContextMenu(contextMenu); // 为TreeTableView绑定ContextMenu
+
+        // 设置鼠标在单元格上右键单击时打开完整的菜单（包括add和delete方法）
+        treeTableView.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.SECONDARY) {
+                if (treeTableView.getSelectionModel().isEmpty()) {
+                    // 空白处右键单击，只显示add方法的菜单
+                    contextMenu.getItems().setAll(addItem);
                 } else {
-                    contextMenu.getItems().add(deleteItem); // 将删除选项添加到菜单中
+                    // 单元格右键单击，根据数据是否存在显示不同的菜单
+                    TreeItem<Path> selectedItem = treeTableView.getSelectionModel().getSelectedItem();
+                    Path rowData = selectedItem.getValue();
+                    System.out.println("Clicked Row Data: " + rowData);
+
+                    String filePath = currentResource.resolve(rowData).toString();
+                    System.out.println("filePath = " + filePath);
+
+                    File file = new File(filePath);
+                    if (file.exists()) {
+                        contextMenu.getItems().setAll(addItem, deleteItem);
+                    } else {
+                        contextMenu.getItems().setAll(addItem);
+                    }
                 }
-                contextMenu.show(treeTableView, event.getScreenX(), event.getScreenY()); // 在鼠标单击处显示菜单
-            } else {
-                contextMenu.hide(); // 隐藏菜单
+
+                contextMenu.show(treeTableView, event.getScreenX(), event.getScreenY());
             }
-        });*/
+        });
+
+
 
         treeTableColumn.setCellFactory(column -> { // 为列设置单元格工厂，设置方法
             TreeTableCell<Path, Path> cell = new TreeTableCell<Path, Path>() { //为treeTableColumn设置自定义的TreeTableCell
@@ -248,14 +261,6 @@ public class CourseInformationController {
                     return getItem() == null ? "" : getItem().toString();
                 }
             };
-
-            cell.emptyProperty().addListener((obs, wasEmpty, isEmpty) -> { //设置右键事件处理程序，以在右键点击时显示ContextMenu
-                if (!isEmpty) {
-                    cell.setContextMenu(contextMenu); // 设置单元格的ContextMenu
-                } else {
-                    cell.setContextMenu(null); // 清空单元格的ContextMenu
-                }
-            });
 
             cell.setOnMouseClicked(event -> { // 添加点击事件处理程序
                 if (cell.isEmpty()) { //为空则返回
@@ -291,8 +296,7 @@ public class CourseInformationController {
 
             return cell;
         });
-        treeTableView.setRoot(rootItem);
-        treeTableView.setShowRoot(false);
+
     }
 
     /**
