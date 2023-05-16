@@ -15,12 +15,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-//运行顺序 init -> start -> stop
+/**
+ * 启动类
+ * 运行顺序 init -> start -> stop
+ */
 public class JavaFXApplication extends Application {
     public static Path rootDirectoryPath; //root path
     public static Path folderRootPath; //file storage path
-    private static Stage stage; //主舞台
     public static Map<String, Object> controllers = new HashMap<>(); //存储所有控制器的引用
+    private static Stage stage; //主舞台
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -46,14 +50,6 @@ public class JavaFXApplication extends Application {
             System.out.println("FXML " + fxml + " load error.");
         }
         return root;
-    }
-
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static void setStage(Stage stage) {
-        JavaFXApplication.stage = stage;
     }
 
     @Override

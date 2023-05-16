@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.nio.file.Path;
 
+/**
+ * 承担角色
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

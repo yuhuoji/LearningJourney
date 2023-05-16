@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
+<!--课程卡片-->
 <StackPane fx:id="rectangleItemStackPane" xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.javafx.learningjourney.controller.component.RectangleItemController"

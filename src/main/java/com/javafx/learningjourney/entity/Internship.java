@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
+/**
+ * 实习经历
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
+<!--课程详细信息页面-->
 <SplitPane fx:id="mainContent" dividerPositions="0.4782608695652174" prefHeight="400.0" prefWidth="600.0"
            xmlns="http://javafx.com/javafx/8.0.171"
            xmlns:fx="http://javafx.com/fxml/1"

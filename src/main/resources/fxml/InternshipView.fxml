@@ -5,7 +5,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<!--实习经历页面-->
 <BorderPane fx:id="mainContent" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.javafx.learningjourney.controller.InternshipController"

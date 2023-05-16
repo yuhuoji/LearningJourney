@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import java.nio.file.Path;
 import java.time.YearMonth;
 
-//lombok插件
+/**
+ * 课程资料
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

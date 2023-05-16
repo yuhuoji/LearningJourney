@@ -5,8 +5,6 @@ import com.javafx.learningjourney.controller.component.RectangleItemController;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import com.javafx.learningjourney.util.Cache;
-import com.javafx.learningjourney.util.CustomEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

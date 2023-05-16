@@ -33,7 +33,6 @@ public class RectangleItemController {
     }
 
     /**
-     * FIXME
      * 根据文件夹随机设置图片
      * @param folderPath 文件夹路径
      */
