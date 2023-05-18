@@ -143,7 +143,7 @@ public class FileDAOImpl implements FileDAO {
 
         Path filePath = Paths.get(root.toString(), directoryName);
         if (Files.exists(filePath)) { //已经存在该文件夹
-            System.out.println(directoryName + "already exists");
+            System.out.println(directoryName + " already exists");
             return false;
         }
 

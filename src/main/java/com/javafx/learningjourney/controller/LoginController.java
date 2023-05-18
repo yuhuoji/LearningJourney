@@ -30,19 +30,19 @@ public class LoginController {
 //        System.out.println("rootDirectoryPath = " + rootDirectoryPath);
         fileDAO.createDirectory(rootDirectoryPath, "LearningJourneyFiles"); //如果没有资料文件夹则新建
 
-        System.out.println("update currentPath " + Cache.get("folderRootPath"));
+//        System.out.println("update currentPath " + Cache.get("folderRootPath"));
         Cache.put("currentPath", Cache.get("folderRootPath"));
 
         Node root = loadFXML("fxml/MainView.fxml"); //切换页面
 
         ((Stage) Cache.get("stage")).setScene(new Scene((Parent) root));
-        //getStage().setScene(new Scene(root));
+
     }
 
     @FXML
     private void initialize() {
         text.setText("Hello World!");
-        Cache.put(this.getClass().getSimpleName(), this); //将当前controller的引用放入缓存
+        Cache.put(this.getClass().getSimpleName(), this); //将当前LoginController的引用放入缓存
         controllers.put(this.getClass().getSimpleName(), this);
     }
 }

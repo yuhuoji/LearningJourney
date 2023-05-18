@@ -24,7 +24,7 @@
                 <fitHeight>50</fitHeight>
             </ImageView>
             <TextField fx:id="courseViewSearchTextField" prefHeight="70.0" prefWidth="202.0"/>
-            <Button fx:id="courseViewSearchButton" mnemonicParsing="false" onAction="#onClickAnalyze"
+            <Button fx:id="courseViewSearchButton" mnemonicParsing="false" onAction="#onClickStatistics"
                     text="Statistics"/>
             <Button fx:id="courseViewAddButton" mnemonicParsing="false" onAction="#onClickAdd" text="+"/>
         </FlowPane>
@@ -47,8 +47,6 @@
     </center>
 
     <bottom>
-        <AnchorPane prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <Button fx:id="courseViewTestButton" mnemonicParsing="false" onAction="#onClickTest" text="Button"/>
-        </AnchorPane>
+
     </bottom>
 </BorderPane>

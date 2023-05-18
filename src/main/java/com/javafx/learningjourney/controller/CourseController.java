@@ -8,11 +8,15 @@ import com.javafx.learningjourney.util.Cache;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -113,7 +117,7 @@ public class CourseController {
 
                     System.out.println("currentPath: " + Cache.get("currentPath"));
                     Path newPath = Paths.get(((Path) (Cache.get("currentPath"))).toString(), labelName);
-                    System.out.println("newPath: " + newPath);
+//                    System.out.println("newPath: " + newPath);
                     Cache.put("currentPath", newPath); //update current path
 
                     Node newNode = loadFXML("fxml/information/CourseInformation.fxml");
@@ -137,20 +141,23 @@ public class CourseController {
     }
 
     @FXML
-    public void onClickAnalyze() {
+    public void onClickStatistics() {
         System.out.println("onClickAnalyze");
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("提示");
-        alert.setHeaderText("统计信息");
-        alert.setContentText("这是弹窗的内容");
-        alert.showAndWait();
+        // 创建一个新的舞台用于弹窗
+        Stage dialogStage = new Stage();
+        Node dialogRoot = loadFXML("fxml/dialog/statisticDialog.fxml");
+        Scene dialogScene = new Scene((Parent) dialogRoot);
+        dialogStage.setScene(dialogScene);
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.showAndWait();
     }
 
     @FXML
     public void onClickAdd() {
         System.out.println("onClickAdd");
+
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("提示");
+        alert.setTitle("Add a course");
         alert.setHeaderText("这是弹窗的标题");
         alert.setContentText("这是弹窗的内容");
         alert.showAndWait();

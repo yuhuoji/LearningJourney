@@ -45,14 +45,18 @@ public class MainController {
      */
     private void loadSidebarTreeView() {
         System.out.println("loadSidebarTreeView");
+     //   System.out.println("currentPath = " + Cache.get("currentPath"));
+        //新建文件夹
+        fileDAO.createDirectory((Path) Cache.get("currentPath"), "Course");
+        fileDAO.createDirectory((Path) Cache.get("currentPath"), "Internship");
+        fileDAO.createDirectory((Path) Cache.get("currentPath"), "Research");
+        fileDAO.createDirectory((Path) Cache.get("currentPath"), "Work");
 
         TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(folderRootPath); //root
 
         if (rootItem == null) {
             System.out.println("rootItem is null");
             rootItem = new TreeItem<>(folderRootPath.getFileName()); // 创建根节点
-        } else {
-            System.out.println("rootItem = " + rootItem);
         }
         rootItem.setExpanded(true); //set the root expanded
 
@@ -99,7 +103,7 @@ public class MainController {
     public void initialize() {
         System.out.println("main initialize");
 
-        Cache.put(this.getClass().getSimpleName(), this); //将MainController放入缓存
+        Cache.put(this.getClass().getSimpleName(), this); //将MainController的引用放入缓存
 
         Cache.put("mainContent", mainContent); //将页面替换的根节点放入缓存
 

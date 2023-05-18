@@ -30,9 +30,7 @@
     </center>
 
     <bottom>
-        <AnchorPane prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <Button fx:id="mainTestButton" mnemonicParsing="false" onAction="#onClick" text="Button"/>
-        </AnchorPane>
+
     </bottom>
 
 </BorderPane>

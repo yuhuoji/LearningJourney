@@ -94,6 +94,15 @@ public class CourseInformationController {
         Cache.put("treeTableViewList", treeTableViewList); //存储treeTableViewList的引用
         Cache.put("treeTableColumnList", treeTableColumnList); //存储treeTableColumnList的引用
 
+        //创建文件夹
+        System.out.println("currentPath = "+Cache.get("currentPath"));
+        Path currentPath = (Path) Cache.get("currentPath");
+        fileDAO.createDirectory(currentPath,"Learning materials");
+        fileDAO.createDirectory(currentPath,"Course notes");
+        fileDAO.createDirectory(currentPath,"Course work");
+        fileDAO.createDirectory(currentPath,"Experiment project");
+
+        //加载Learning materials, Course notes, Course work, Experiment project
         loadResources(1);
         loadResources(2);
         loadResources(3);
@@ -137,7 +146,7 @@ public class CourseInformationController {
     }
 
     /**
-     * 加载页面资源:学习资料，课程笔记，课程作业，实验项目等
+     * 加载页面资源:学习资料，课程笔记，课程作业，实验项目
      *
      * @param i 1:学习资料，2:课程笔记，3:课程作业，4:实验项目
      */
