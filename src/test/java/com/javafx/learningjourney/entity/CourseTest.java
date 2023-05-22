@@ -2,14 +2,12 @@ package com.javafx.learningjourney.entity;
 
 import com.javafx.learningjourney.util.JsonUtil;
 import com.javafx.learningjourney.util.RootPathUtil;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.YearMonth;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CourseTest {
     public static Path folderRootPath; //root path
@@ -28,20 +26,27 @@ class CourseTest {
     }
 
     @Test
-    void calculateTotalMark() {
+    void testCalculateTotalMark() {
 
-        // assertEquals(100, course.calculateTotalMark());
-        System.out.println(course);
+        course.setNormalMark(80.0);
+        course.setNormalMarkWeight(0.3);
+        course.setExperimentalMark(90.0);
+        course.setExperimentalMarkWeight(0.2);
+        course.setFinalMark(85.0);
+        course.setFinalMarkWeight(0.5);
 
+        double expectedTotalMark = 84.5;
+        double actualTotalMark = course.calculateTotalMark();
+
+        Assertions.assertEquals(expectedTotalMark, actualTotalMark, 0.01, "Total mark calculation failed");
     }
 
     @Test
-    void createTest() {
-
+    void testCreate() {
         System.out.println(course);
-//        System.out.println(folderRootPath.resolve("Course/Digital Circuits/course.json"));
-//        JsonUtil.saveObjectToJsonFile(course,folderRootPath.resolve("Course/Digital Circuits/course.json"));
-//        Course jsonCourse = JsonUtil.readJsonFileToObject(folderRootPath.resolve("Course/Digital Circuits/course.json"),Course.class);
-//        System.out.println(jsonCourse);
+        System.out.println(folderRootPath.resolve("Course/Digital Circuits/course.json"));
+        JsonUtil.saveObjectToJsonFile(course, folderRootPath.resolve("Course/Digital Circuits/course.json"));
+        Course jsonCourse = JsonUtil.readJsonFileToObject(folderRootPath.resolve("Course/Digital Circuits/course.json"), Course.class);
+        System.out.println("jsonCourse = " + jsonCourse);
     }
 }

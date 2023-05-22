@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.nio.file.Path;
+
 import static com.javafx.learningjourney.JavaFXApplication.*;
 
 public class LoginController {
@@ -27,8 +29,7 @@ public class LoginController {
 
     @FXML
     public void onClick(ActionEvent event) {
-//        System.out.println("rootDirectoryPath = " + rootDirectoryPath);
-        fileDAO.createDirectory(rootDirectoryPath, "LearningJourneyFiles"); //如果没有资料文件夹则新建
+        fileDAO.createDirectory((Path) Cache.get("rootDirectoryPath"), "LearningJourneyFiles"); //如果没有资料文件夹则新建
 
 //        System.out.println("update currentPath " + Cache.get("folderRootPath"));
         Cache.put("currentPath", Cache.get("folderRootPath"));
@@ -43,6 +44,5 @@ public class LoginController {
     private void initialize() {
         text.setText("Hello World!");
         Cache.put(this.getClass().getSimpleName(), this); //将当前LoginController的引用放入缓存
-        controllers.put(this.getClass().getSimpleName(), this);
     }
 }

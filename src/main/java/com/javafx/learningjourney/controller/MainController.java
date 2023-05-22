@@ -46,17 +46,18 @@ public class MainController {
     private void loadSidebarTreeView() {
         System.out.println("loadSidebarTreeView");
      //   System.out.println("currentPath = " + Cache.get("currentPath"));
-        //新建文件夹
+        //new folders
         fileDAO.createDirectory((Path) Cache.get("currentPath"), "Course");
         fileDAO.createDirectory((Path) Cache.get("currentPath"), "Internship");
         fileDAO.createDirectory((Path) Cache.get("currentPath"), "Research");
         fileDAO.createDirectory((Path) Cache.get("currentPath"), "Work");
 
-        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(folderRootPath); //root
+        System.out.println("111folderRootPath = " + Cache.get("folderRootPath"));
+        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel((Path) Cache.get("folderRootPath")); //root
 
         if (rootItem == null) {
             System.out.println("rootItem is null");
-            rootItem = new TreeItem<>(folderRootPath.getFileName()); // 创建根节点
+            rootItem = new TreeItem<>(((Path) Cache.get("folderRootPath")).getFileName()); // 创建根节点
         }
         rootItem.setExpanded(true); //set the root expanded
 

@@ -10,27 +10,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
- * 启动类
- * 运行顺序 init -> start -> stop
+ * The startup class of a JavaFX project, that includes the main method
+ */
+/*
+Running sequence init -> start -> stop
  */
 public class JavaFXApplication extends Application {
-    public static Path rootDirectoryPath; //root path
-    public static Path folderRootPath; //file storage path
-    public static Map<String, Object> controllers = new HashMap<>(); //存储所有控制器的引用
-    private static Stage stage; //主舞台
-
     public static void main(String[] args) {
         launch(args);
     }
 
     /**
-     * load fxml file
+     * load a fxml file
      *
      * @param fxml fxml file path
      * @return root node
@@ -39,8 +33,7 @@ public class JavaFXApplication extends Application {
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            //System.out.println(JavaFXApplication.class);
-            System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
+//            System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
             fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxml))); //set fxml file path
             //  System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
             root = fxmlLoader.load(); //load fxml file
@@ -56,26 +49,24 @@ public class JavaFXApplication extends Application {
     public void init() throws Exception {
         super.init();
         Cache.put("rootDirectoryPath", RootPathUtil.getRootPath());
-        rootDirectoryPath = RootPathUtil.getRootPath();
         Cache.put("folderRootPath", RootPathUtil.getFolderRootPath());
-        folderRootPath = RootPathUtil.getFolderRootPath();
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        Cache.put("stage", primaryStage);
+
+        primaryStage.setTitle("Learning Journey");
+
+        Parent root = (Parent) loadFXML("fxml/LoginView.fxml"); //切换页面
+        Cache.put("currentView", "LoginView");
+
+        primaryStage.setScene(new Scene(root)); //set scene
+        primaryStage.show();
     }
 
     @Override
     public void stop() throws Exception {
         super.stop();
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        JavaFXApplication.stage = primaryStage;
-        Cache.put("stage", primaryStage);
-        stage.setTitle("Learning Journey");
-
-        Parent root = (Parent) loadFXML("fxml/LoginView.fxml"); //切换页面
-        Cache.put("currentView", "LoginView");
-
-        stage.setScene(new Scene(root)); //set scene
-        primaryStage.show();
     }
 }

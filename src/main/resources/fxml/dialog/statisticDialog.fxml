@@ -11,7 +11,7 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.javafx.learningjourney.controller.dialog.statisticDialog">
+            fx:controller="com.javafx.learningjourney.controller.dialog.StatisticDialogController">
     <top>
         <VBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="20.0">

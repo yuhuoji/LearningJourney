@@ -15,12 +15,12 @@ import java.util.stream.Stream;
 public class FileDAOImpl implements FileDAO {
 
     /**
-     * 递归遍历指定路径当前层级下的所有文件和文件夹，并将它们作为TreeItem的子节点添加，最后返回TreeItem的树形结构。
-     * dfs
-     * (除了json文件)
+     * Recursively traverses all files and folders in the current level of the specified path, adds them as child nodes to TreeItem, and returns the tree structure of TreeItem.
+     * Uses depth-first search (DFS) algorithm.
+     * (Excludes JSON files)
      *
-     * @param path 树形结构的根路径，可以是文件或者文件夹。
-     * @return 根据指定路径创建的TreeItem对象，其中包含了整个目录树的结构。
+     * @param path Root path of the tree structure, can be a file or folder.
+     * @return TreeItem object created based on the specified path, containing the entire directory tree structure.
      */
     @Override
     public TreeItem<Path> createTreeOfAllFilesAndFolders(Path path) {
@@ -46,7 +46,7 @@ public class FileDAOImpl implements FileDAO {
         try (Stream<Path> list = Files.list(path)) {
             list.forEach(p -> { // 遍历path下的所有文件和文件夹
                 TreeItem<Path> item = new TreeItem<>(p.getFileName());
-                if (Files.isDirectory(p)) { // 如果是文件夹，则递归调用createTree()方法，并将返回值添加到子节点中。
+                if (Files.isDirectory(p)) { // 如果是文件夹，则递归调用方法，并将返回值添加到子节点中。
                     item.getChildren().add(createTreeOfAllFilesAndFolders(p));
                 }
                 root.getChildren().add(item); // 将子节点添加到根节点下
@@ -59,10 +59,10 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 遍历指定路径当前层级下的所有文件夹，并将它们作为TreeItem的子节点添加，最后返回TreeItem的树形结构。
+     * Traverses all folders in the current level of the specified path, adds them as child nodes to TreeItem, and returns the tree structure of TreeItem.
      *
-     * @param path 树形结构的根路径，必须是文件夹。
-     * @return 返回指定路径下的所有文件夹
+     * @param path Root path of the tree structure, must be a folder.
+     * @return All folders under the specified path.
      */
     @Override
     public TreeItem<Path> createTreeOfAllFoldersInCurrentLevel(Path path) {
@@ -92,10 +92,10 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 遍历指定路径当前层级下的所有文件(除了json文件)，并将它们作为TreeItem的子节点添加，最后返回TreeItem的树形结构。
+     * Traverses all files (excluding JSON files) in the current level of the specified path, adds them as child nodes to TreeItem, and returns the tree structure of TreeItem.
      *
-     * @param path 树形结构的根路径，必须是文件夹。
-     * @return 返回指定路径下的所有文件(除了json文件)
+     * @param path Root path of the tree structure, must be a folder.
+     * @return All files (excluding JSON files) under the specified path.
      */
     @Override
     public TreeItem<Path> createTreeOfAllFilesInCurrentLevel(Path path) {
@@ -114,7 +114,7 @@ public class FileDAOImpl implements FileDAO {
             list.forEach(p -> { // 遍历path下的所有文件和文件夹
                 // 如果是文件且不是json文件，则添加到子节点中
                 if (Files.isDirectory(p) || (!Files.isDirectory(p) && !p.getFileName().toString().endsWith(".json"))) {
-               //     System.out.println(p);
+                    //     System.out.println(p);
                     TreeItem<Path> item = new TreeItem<>(p.getFileName());
                     root.getChildren().add(item);
                 }
@@ -127,14 +127,14 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * TODO 正则检查名称是否合法
-     * 检查指定目录下是否存在文件夹，否则在指定目录下创建指定文件或文件夹(单级目录)
-     * TODO 创建多级目录
+     * Checks if a folder exists in the specified directory, otherwise creates a specified file or folder (single-level directory) in the specified directory.
      *
-     * @param root          指定目录
-     * @param directoryName 文件夹名
-     * @return 是否创建成功
+     * @param root          Specified directory.
+     * @param directoryName Folder name.
+     * @return Whether the creation is successful.
      */
+    //TODO 正则检查名称是否合法
+    //TODO 创建多级目录
     @Override
     public boolean createDirectory(Path root, String directoryName) {
         if (directoryName == null || directoryName.trim().equals("")) { //检查是否是正常的文件夹名称
@@ -143,7 +143,7 @@ public class FileDAOImpl implements FileDAO {
 
         Path filePath = Paths.get(root.toString(), directoryName);
         if (Files.exists(filePath)) { //已经存在该文件夹
-            System.out.println(directoryName + " already exists");
+//            System.out.println(directoryName + " already exists");
             return false;
         }
 
@@ -157,11 +157,11 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 检查指定目录下是否存在指定文件或文件夹
+     * Checks if a specified file or folder exists in the specified directory.
      *
-     * @param root 指定目录
-     * @param name 文件或文件夹名
-     * @return 是否存在
+     * @param root Specified directory.
+     * @param name File or folder name.
+     * @return Whether it exists.
      */
     @Override
     public boolean checkFileOrFolderExistence(Path root, String name) {
@@ -170,10 +170,10 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 给一个文件的绝对路径，检查该文件是否存在
+     * Given the absolute path of a file, checks if the file exists.
      *
-     * @param filePath 文件的绝对路径
-     * @return 是否存在
+     * @param filePath Absolute path of the file.
+     * @return Whether the file exists.
      */
     @Override
     public boolean checkFileOrFolderExistence(Path filePath) {
@@ -181,10 +181,10 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 删除指定文件或文件夹
+     * Deletes the specified file or folder.
      *
-     * @param filePath 指定需要删除的文件或文件夹的路径
-     * @return 是否删除成功
+     * @param filePath Path of the file or folder to be deleted.
+     * @return Whether the deletion is successful.
      */
     @Override
     public boolean deleteFileOrFolder(Path filePath) {
@@ -214,11 +214,11 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 删除指定目录下的指定文件或文件夹
+     * Deletes the specified file or folder in the specified directory.
      *
-     * @param root     指定目录的路径
-     * @param fileName 指定目录的路径下的文件或文件夹名
-     * @return 是否删除成功
+     * @param root     Path of the specified directory.
+     * @param fileName Name of the file or folder in the specified directory.
+     * @return Whether the deletion is successful.
      */
     @Override
     public boolean deleteFileOrFolder(Path root, String fileName) {
@@ -230,10 +230,10 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 清空指定文件夹下的所有文件，但不删除该文件夹
+     * Clears all files in the specified folder, without deleting the folder itself.
      *
-     * @param path 指定文件夹的路径
-     * @return 是否清空成功
+     * @param path Path of the specified folder.
+     * @return Whether the clearing is successful.
      */
     @Override
     public boolean emptyFolder(Path path) {
@@ -274,11 +274,11 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 重命名文件或文件夹
+     * Renames a file or folder.
      *
-     * @param oldNamePath 文件或文件夹的完整路径
-     * @param newName     新的文件或文件夹的名字
-     * @return 是否重命名成功
+     * @param oldNamePath Full path of the file or folder.
+     * @param newName     New name for the file or folder.
+     * @return Whether the renaming is successful.
      */
     @Override
     public boolean renameFileOrFolder(Path oldNamePath, String newName) {
@@ -302,11 +302,11 @@ public class FileDAOImpl implements FileDAO {
     }
 
     /**
-     * 移动文件或文件夹
+     * Moves a file or folder.
      *
-     * @param fromPath 需要移动的文件和文件夹的路径
-     * @param toPath   目的路径
-     * @return 是否移动成功
+     * @param fromPath Path of the file or folder to be moved.
+     * @param toPath   Destination path.
+     * @return Whether the move is successful.
      */
     @Override
     public boolean moveFileOrFolder(Path fromPath, Path toPath) {

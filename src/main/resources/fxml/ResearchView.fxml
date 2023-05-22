@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
 <!--科研项目页面-->
-<BorderPane fx:id="mainContent" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.javafx.learningjourney.controller.ResearchController"
-            prefHeight="400.0" prefWidth="600.0">
+
+<BorderPane fx:id="mainContent" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.learningjourney.controller.ResearchController">
     <bottom>
         <AnchorPane prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <Button fx:id="researchViewTestButton" mnemonicParsing="false" onAction="#onClickTest" text="researchButton"/>
+            <Button fx:id="researchViewTestButton" mnemonicParsing="false" onAction="#onClickTest" text="researchButton" />
         </AnchorPane>
     </bottom>
+   <center>
+      <Label text="This is the research project view." BorderPane.alignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </center>
 </BorderPane>

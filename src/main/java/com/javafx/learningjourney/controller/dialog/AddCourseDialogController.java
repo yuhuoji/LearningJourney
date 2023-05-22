@@ -1,4 +1,4 @@
 package com.javafx.learningjourney.controller.dialog;
 
-public class addCourseDialog {
+public class AddCourseDialogController {
 }

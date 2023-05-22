@@ -7,23 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 
-/**
- * research and work controller
- */
 public class ResearchController {
     private final FileDAO fileDAO;
     @FXML
     public BorderPane mainContent;
 
-
     public ResearchController() {
         fileDAO = new FileDAOImpl();
     }
 
-    @FXML
-    public void onClick(ActionEvent event) {
-
-    }
 
     @FXML
     public void initialize() {

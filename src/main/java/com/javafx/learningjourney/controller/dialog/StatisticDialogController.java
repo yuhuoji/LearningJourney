@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class statisticDialog {
+public class StatisticDialogController {
     private final FileDAO fileDAO;
     TableView<ObservableList<String>> tableView;
     ObservableList<ObservableList<String>> tableData;
@@ -36,7 +36,7 @@ public class statisticDialog {
     @FXML
     private Pane contentPane; //主要内容区域
 
-    public statisticDialog() {
+    public StatisticDialogController() {
         fileDAO = new FileDAOImpl();
     }
 
@@ -50,9 +50,9 @@ public class statisticDialog {
     }
 
     /**
-     * 根据按钮的选中状态切换页面内容
+     * Event handler for the selected button
      *
-     * @param button 选中的按钮
+     * @param button Selected button
      */
     @FXML
     private void handleButtonAction(ToggleButton button) {
@@ -70,7 +70,8 @@ public class statisticDialog {
     }
 
     /**
-     * 成绩统计表格
+     * Grade statistics table
+     * @return Grade statistics root node
      */
     private Pane statistic() {
         HBox page = new HBox();
@@ -145,10 +146,10 @@ public class statisticDialog {
     }
 
     /**
-     * 读取CSV文件并返回数据
+     * Read a CSV file and return the dat
      *
-     * @param path CSV文件路径
-     * @return CSV文件数据
+     * @param path CSV file path
+     * @return CSV file data
      */
     private ObservableList<ObservableList<String>> readCSV(Path path) {
         String filePath = path.toString();
@@ -205,16 +206,16 @@ public class statisticDialog {
 
 
     /**
-     * 保存数据到CSV文件
+     * Save existing data in the table to a CSV file
      *
-     * @param path      CSV文件路径
-     * @param tableData 表格数据
-     * @param tableView 表格
+     * @param filePath      CSV file path
+     * @param tableData current table data
+     * @param tableView table view
      */
-    private void saveToCSV(Path path, ObservableList<ObservableList<String>> tableData, TableView<ObservableList<String>> tableView) {
+    private void saveToCSV(Path filePath, ObservableList<ObservableList<String>> tableData, TableView<ObservableList<String>> tableView) {
         ObservableList<TableColumn<ObservableList<String>, ?>> columns = tableView.getColumns();
 
-        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             // Write column headers as the first row
             List<String> headers = new ArrayList<>();
             for (TableColumn<ObservableList<String>, ?> column : columns) {
@@ -235,7 +236,8 @@ public class statisticDialog {
 
 
     /**
-     * 成绩曲线
+     * Grade curve
+     * @return Root node
      */
     private Pane curve() {
 //        Button loadButton = new Button("加载CSV");
@@ -251,7 +253,8 @@ public class statisticDialog {
     }
 
     /**
-     * 统计信息
+     * Statistical information on average scores and GPA
+     * @return Root node
      */
     private Pane information() {
         return new Pane();

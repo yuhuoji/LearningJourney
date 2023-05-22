@@ -6,8 +6,8 @@ import java.nio.file.Paths;
 
 public class RootPathUtil {
     /**
-     * 获取项目根目录的路径
-     * @return 项目根目录的路径
+     * Retrieve the path of the project's root directory
+     * @return the path of the project's root directory
      */
     public static Path getRootPath() {
         // 获取打包后JAR文件所在的目录位置
@@ -29,8 +29,8 @@ public class RootPathUtil {
     }
 
     /**
-     * 获取文件存储的根目录
-     * @return 系统文件存储的文件夹的路径
+     * Retrieve the root directory of the project file storage
+     * @return the root directory of the project file storage
      */
     public static Path getFolderRootPath(){
         return Paths.get(getRootPath().toString(),"LearningJourneyFiles");

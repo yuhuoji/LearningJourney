@@ -29,7 +29,7 @@ class JsonUtilTest {
     }
 
     @Test
-    void parseJsonFileToMap() {
+    void testParseJsonFileToMap() {
         Path jsonPath = Paths.get(folderRootPath.toString(), "Course/Digital Circuits/", "course.json");
         System.out.println("jsonPath = " + jsonPath);
         Map<String, Object> jsonMap = JsonUtil.parseJsonFileToMap(jsonPath);
@@ -37,15 +37,14 @@ class JsonUtilTest {
     }
 
     @Test
-    void saveObjectToJsonFile() {
-
+    void testSaveObjectToJsonFile() {
         Path jsonPath = Paths.get(folderRootPath.toString(), "course.json");
         System.out.println("jsonPath = " + jsonPath);
         System.out.println(JsonUtil.saveObjectToJsonFile(course, jsonPath));
     }
 
     @Test
-    void readJsonFileToObject() {
+    void testReadJsonFileToObject() {
         Path jsonPath = Paths.get(folderRootPath.toString(), "course.json");
         System.out.println("jsonPath = " + jsonPath);
         Course course = JsonUtil.readJsonFileToObject(jsonPath, Course.class);

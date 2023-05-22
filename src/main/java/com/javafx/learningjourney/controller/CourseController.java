@@ -24,9 +24,6 @@ import java.nio.file.Paths;
 
 import static com.javafx.learningjourney.JavaFXApplication.*;
 
-/**
- * course and internship controller
- */
 public class CourseController {
     private final FileDAO fileDAO;
     @FXML
@@ -59,15 +56,15 @@ public class CourseController {
     }
 
     /**
-     * 加载课程并绑定点击跳转课程详情页面的方法
+     * Load courses and bind click event to navigate to a specific course details page
      */
     private void loadCourses() {
         System.out.println("loadCourses");
-        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(Paths.get(folderRootPath.toString(), "Course"));
+        TreeItem<Path> rootItem = fileDAO.createTreeOfAllFoldersInCurrentLevel(Paths.get(((Path) Cache.get("folderRootPath")).toString(), "Course"));
 
         if (rootItem == null) {
             System.out.println("rootItem is null");
-            rootItem = new TreeItem<>(Paths.get(folderRootPath.toString(), "Course", "New Course").getFileName()); // 创建根节点
+            rootItem = new TreeItem<>(Paths.get(((Path) Cache.get("folderRootPath")).toString(), "Course", "New Course").getFileName()); // 创建根节点
         }
         int row = 0;
         int column = 0;
@@ -83,7 +80,7 @@ public class CourseController {
                 Node rectangleItem = fxmlLoader.load();
                 RectangleItemController rectangleItemController = fxmlLoader.getController();
                 rectangleItemController.setLabel(folderName);
-                rectangleItemController.setFolderImage(Paths.get(folderRootPath.toString(), "Course", folderName).toString()); // FIXME 设置图片
+                rectangleItemController.setFolderImage(Paths.get(((Path) Cache.get("folderRootPath")).toString(), "Course", folderName).toString()); // FIXME 设置图片
 
                 GridPane.setRowIndex(rectangleItem, row);
                 GridPane.setColumnIndex(rectangleItem, column);
@@ -115,7 +112,7 @@ public class CourseController {
 
                     Cache.put("currentCourse", labelName);
 
-                    System.out.println("currentPath: " + Cache.get("currentPath"));
+//                    System.out.println("currentPath: " + Cache.get("currentPath"));
                     Path newPath = Paths.get(((Path) (Cache.get("currentPath"))).toString(), labelName);
 //                    System.out.println("newPath: " + newPath);
                     Cache.put("currentPath", newPath); //update current path
@@ -128,6 +125,7 @@ public class CourseController {
 
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("load Courses failed");
             }
 
         }
@@ -136,15 +134,11 @@ public class CourseController {
     }
 
     @FXML
-    public void onClickTest() {
-        System.out.println("onClickTest");
-    }
-
-    @FXML
     public void onClickStatistics() {
         System.out.println("onClickAnalyze");
         // 创建一个新的舞台用于弹窗
         Stage dialogStage = new Stage();
+        Cache.put("dialogStage", dialogStage);
         Node dialogRoot = loadFXML("fxml/dialog/statisticDialog.fxml");
         Scene dialogScene = new Scene((Parent) dialogRoot);
         dialogStage.setScene(dialogScene);
@@ -158,8 +152,8 @@ public class CourseController {
 
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Add a course");
-        alert.setHeaderText("这是弹窗的标题");
-        alert.setContentText("这是弹窗的内容");
+        alert.setHeaderText("Add a course");
+        alert.setContentText("Add a course");
         alert.showAndWait();
     }
 

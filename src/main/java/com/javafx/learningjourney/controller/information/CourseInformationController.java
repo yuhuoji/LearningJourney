@@ -68,9 +68,6 @@ public class CourseInformationController {
         this.fileDAO = new FileDAOImpl();
     }
 
-    /**
-     * TODO @date 2023-05-16 四个创建文件夹
-     */
     @FXML
     public void initialize() {
         Cache.put(this.getClass().getSimpleName(), this); //将当前controller的引用放入缓存
@@ -95,12 +92,12 @@ public class CourseInformationController {
         Cache.put("treeTableColumnList", treeTableColumnList); //存储treeTableColumnList的引用
 
         //创建文件夹
-        System.out.println("currentPath = "+Cache.get("currentPath"));
+        System.out.println("currentPath = " + Cache.get("currentPath"));
         Path currentPath = (Path) Cache.get("currentPath");
-        fileDAO.createDirectory(currentPath,"Learning materials");
-        fileDAO.createDirectory(currentPath,"Course notes");
-        fileDAO.createDirectory(currentPath,"Course work");
-        fileDAO.createDirectory(currentPath,"Experiment project");
+        fileDAO.createDirectory(currentPath, "Learning materials");
+        fileDAO.createDirectory(currentPath, "Course notes");
+        fileDAO.createDirectory(currentPath, "Course work");
+        fileDAO.createDirectory(currentPath, "Experimental project");
 
         //加载Learning materials, Course notes, Course work, Experiment project
         loadResources(1);
@@ -113,9 +110,9 @@ public class CourseInformationController {
     }
 
     /**
-     * 初始化课程信息
+     * Load detailed information of this course
      *
-     * @param jsonMap Map<key, value>
+     * @param jsonMap Map of JSON files storing detailed information of this course.
      */
     private void loadCourseInfo(Map<String, Object> jsonMap) {
         // 创建一个ObservableList来存储PropertyEntry对象
@@ -146,9 +143,9 @@ public class CourseInformationController {
     }
 
     /**
-     * 加载页面资源:学习资料，课程笔记，课程作业，实验项目
+     * Load course materials for this course
      *
-     * @param i 1:学习资料，2:课程笔记，3:课程作业，4:实验项目
+     * @param i Representing a specific resource: 1. Learning materials, 2. Course notes, 3. Course work, 4. Experimental project
      */
     private void loadResources(int i) {
         String resourceStr;
@@ -178,7 +175,7 @@ public class CourseInformationController {
         }
         Path currentCoursePath = (Path) Cache.get("currentPath");
         Path currentResource = currentCoursePath.resolve(resourceStr);
-        System.out.println("currentResource = " + currentResource);
+//        System.out.println("currentResource = " + currentResource);
         TreeItem<Path> rootItem = fileDAO.createTreeOfAllFilesInCurrentLevel(currentResource);
 
         if (rootItem == null) {
@@ -203,10 +200,10 @@ public class CourseInformationController {
             File selectedFile = fileChooser.showOpenDialog((Stage) Cache.get("stage"));// 显示文件选择对话框并获取所选文件
             if (selectedFile != null) { // 检查用户是否选择了文件
                 String filePath = selectedFile.getAbsolutePath();
-                System.out.println("所选文件路径：" + filePath);
+//                System.out.println("Selected file path：" + filePath);
                 fileDAO.moveFileOrFolder(Paths.get(filePath), currentResource); //move the file to the current resource folder
             } else {
-                System.out.println("未选择文件");
+                System.out.println("No file selected.");
             }
             loadResources(i); //FIXME @date 2023-05-15 刷新treeTableView，重新加载资源
         });
@@ -242,10 +239,10 @@ public class CourseInformationController {
                     // 单元格右键单击，根据数据是否存在显示不同的菜单
                     TreeItem<Path> selectedItem = treeTableView.getSelectionModel().getSelectedItem();
                     Path rowData = selectedItem.getValue();
-                    System.out.println("Clicked Row Data: " + rowData);
+//                    System.out.println("Clicked Row Data: " + rowData);
 
                     String filePath = currentResource.resolve(rowData).toString();
-                    System.out.println("filePath = " + filePath);
+//                    System.out.println("filePath = " + filePath);
 
                     File file = new File(filePath);
                     if (file.exists()) {
@@ -299,17 +296,14 @@ public class CourseInformationController {
                 if (cell.isEmpty()) { //为空则返回
                     return;
                 }
-                if (event.getClickCount() == 1) { //单击选中
-
-                }
                 if (event.getClickCount() == 2) { //双击打开
                     TreeItem<Path> treeItem = cell.getTreeTableRow().getTreeItem();
                     if (treeItem != null) {
                         Path rowData = treeItem.getValue();
-                        System.out.println("Clicked Row Data: " + rowData);
+//                        System.out.println("Clicked Row Data: " + rowData);
 
                         String filePath = currentResource.resolve(rowData).toString();
-                        System.out.println("filePath = " + filePath);
+//                        System.out.println("filePath = " + filePath);
 
                         File file = new File(filePath);   // 创建一个File对象
                         if (file.exists()) { // 检查文件是否存在
@@ -333,9 +327,11 @@ public class CourseInformationController {
     }
 
     /**
+     * Check detailed score information for the current course
+     * @param actionEvent Button click event
+     */
+    /*
      * TODO @date 2023-05-16 查看分数
-     *
-     * @param actionEvent ActionEvent
      */
     @FXML
     public void checkCourseScore(ActionEvent actionEvent) {
@@ -343,7 +339,8 @@ public class CourseInformationController {
     }
 
     /**
-     * @param mouseEvent MouseEvent
+     * Refresh data when clicking on the dropdown box
+     * @param mouseEvent Button click event
      */
     @FXML
     public void handleTitledPaneClick(MouseEvent mouseEvent) {
@@ -355,7 +352,7 @@ public class CourseInformationController {
     }
 
 
-    /**
+    /*
      * PropertyEntry 类用于存储属性名和属性值 key-value
      */
     protected class PropertyEntry {

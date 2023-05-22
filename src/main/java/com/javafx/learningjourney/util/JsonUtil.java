@@ -6,7 +6,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -14,10 +13,10 @@ import java.util.Map;
 
 public class JsonUtil {
     /**
-     * 使用 Jackson 库将 JSON 对象解析为 Map
+     * Use the Jackson library to parse JSON objects into maps
      *
-     * @param jsonFilePath json文件路径
-     * @return Map<key, value>
+     * @param jsonFilePath json file path
+     * @return Map<key, value> object
      */
     public static Map<String, Object> parseJsonFileToMap(Path jsonFilePath) {
         Map<String, Object> jsonMap = new HashMap<>();
@@ -36,11 +35,12 @@ public class JsonUtil {
     }
 
     /**
-     * 将java对象序列化存储到json
+     * Serialize Java objects and store them in a JSON file
      *
-     * @param bean     java对象
-     * @param filePath json文件路径
-     * @return 序列化和存储是否成功
+     * @param <T>      java object type
+     * @param bean     java bean
+     * @param filePath json file path
+     * @return true if success, false if fail
      */
     public static <T> boolean saveObjectToJsonFile(T bean, Path filePath) {
         if (bean == null) { //java对象为空
@@ -73,12 +73,12 @@ public class JsonUtil {
     }
 
     /**
-     * 读取指定位置的json文件，返回java对象
+     * read a JSON file from a specified location and return a Java object
      *
-     * @param filePath json文件路径
-     * @param clazz    目标反序列化的java对象类型
-     * @param <T>      java对象类型
-     * @return 反序列化后的java对象
+     * @param <T>     java object type
+     * @param filePath json file path
+     * @param clazz    java object type
+     * @return java object
      */
     public static <T> T readJsonFileToObject(Path filePath, Class<T> clazz) {
         if (!filePath.toFile().exists()) { //json文件不存在

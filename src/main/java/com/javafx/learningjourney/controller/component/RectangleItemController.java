@@ -17,15 +17,16 @@ public class RectangleItemController {
     private Label rectangleItemNameLabel;
 
     /**
-     *
-     * @param name 标签名
+     * Set the label name.
+     * @param name label name
      */
     public void setLabel(String name) {
         rectangleItemNameLabel.setText(name);
     }
 
     /**
-     * @param imagePath 图片路径
+     * Set the image.
+     * @param imagePath image path
      */
     private void setImage(String imagePath) {
         Image image = new Image(imagePath);
@@ -33,8 +34,8 @@ public class RectangleItemController {
     }
 
     /**
-     * 根据文件夹随机设置图片
-     * @param folderPath 文件夹路径
+     * Set the image in the folder with the suffix of .png.
+     * @param folderPath folder path
      */
     public void setFolderImage(String folderPath) {
         File folder = new File(folderPath);
@@ -51,6 +52,10 @@ public class RectangleItemController {
         }
     }
 
+    /**
+     * Get the label name.
+     * @return label name
+     */
     public String getLabelName() {
         return rectangleItemNameLabel.getText();
     }

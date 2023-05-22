@@ -1,17 +1,9 @@
 package com.javafx.learningjourney.util;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 缓存类
- * TODO 添加过期时间、清除过期数据
- */
+//TODO 添加过期时间、清除过期数据
 public class Cache {
     private static final Map<String, Object> cacheMap = new HashMap<>();
 
@@ -37,5 +29,13 @@ public class Cache {
 
     public static void clear() {
         cacheMap.clear();
+    }
+
+    public static void printAll() {
+        System.out.println("-----------\nCurrent Cache:");
+        for (Map.Entry<String, Object> entry : cacheMap.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+        System.out.println("-----------");
     }
 }

@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import java.nio.file.Path;
 import java.time.YearMonth;
 
-/**
- * 课程资料
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,7 +29,8 @@ public class Course {
     private String teacher;
 
     /**
-     * calculate total mark
+     * Calculate total mark
+     *
      * @return total mark, -1 represents error
      */
     public Double calculateTotalMark() {

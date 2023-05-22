@@ -25,7 +25,7 @@ class FileDAOImplTest {
 
     //可以先运行这个方法，再测试其他方法
     @Test
-    void createMoreFiles() {
+    void testCreateMoreFiles() {
         fileDAO.createDirectory(testFolderPath,"Course");
         fileDAO.createDirectory(testFolderPath,"Internship");
         fileDAO.createDirectory(testFolderPath,"Research");
@@ -51,21 +51,21 @@ class FileDAOImplTest {
     }
 
     @Test
-    void emptyFolder() {
+    void testEmptyFolder() {
         Path emptyPath = Paths.get(testFolderPath.toString());
         fileDAO.emptyFolder(emptyPath);
     }
 
     //最后可以运行这个方法清空文件夹
     @Test
-    void deleteFileOrFolder() {
+    void testDeleteFileOrFolder() {
         Path deletePath = Paths.get(testFolderPath.toString(), "test");
         FileDAOImpl fileDAO = new FileDAOImpl();
         fileDAO.deleteFileOrFolder(deletePath);
     }
 
     @Test
-    void getAllFiles() {
+    void testGetAllFiles() {
 
         Path root = Paths.get(testFolderPath.toString(),"test");
         System.out.println(root.getFileName().toString());
@@ -73,7 +73,7 @@ class FileDAOImplTest {
     }
 
     @Test
-    void createDirectory() {
+    void testCreateDirectory() {
         Path createPath = Paths.get(testFolderPath.toString(), "test/data/test1");
 
         System.out.println(fileDAO.checkFileOrFolderExistence(createPath));
@@ -82,13 +82,13 @@ class FileDAOImplTest {
     }
 
     @Test
-    void createTreeOfAllFilesInCurrentLevel() {
+    void testCreateTreeOfAllFilesInCurrentLevel() {
         Path path = Paths.get(testFolderPath.toString(), "test");
         System.out.println(fileDAO.createTreeOfAllFilesInCurrentLevel(path));
     }
 
     @Test
-    void renameFileOrFolder() {
+    void testRenameFileOrFolder() {
         Path path1 = Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2", "test2.log");
         System.out.println(path1);
         System.out.println(fileDAO.renameFileOrFolder(path1, "test222.log"));
@@ -99,7 +99,7 @@ class FileDAOImplTest {
     }
 
     @Test
-    void isFileExist() {
+    void testIsFileExist() {
         Path filePath = Paths.get(testFolderPath.toString(), "test", "data");
 
         System.out.println("root = " + filePath.toAbsolutePath());
@@ -112,7 +112,7 @@ class FileDAOImplTest {
     }
 
     @Test
-    void moveFileOrFolder() {
+    void testMoveFileOrFolder() {
         Path path1 = Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2", "test3", "test4", "test5");
         System.out.println("path1 = " + path1);
         System.out.println(fileDAO.moveFileOrFolder(path1, testFolderPath)); //已经存在了，所以返回false
@@ -126,7 +126,7 @@ class FileDAOImplTest {
 
 
     @Test
-    void getRootDirectoryPath() {
+    void testGetRootDirectoryPath() {
 
         System.out.println(RootPathUtil.getRootPath());
         System.out.println(RootPathUtil.getFolderRootPath());
