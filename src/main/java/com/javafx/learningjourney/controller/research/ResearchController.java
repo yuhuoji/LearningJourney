@@ -1,4 +1,4 @@
-package com.javafx.learningjourney.controller;
+package com.javafx.learningjourney.controller.research;
 
 import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.dao.FileDAO;

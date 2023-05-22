@@ -42,7 +42,6 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        text.setText("Hello World!");
         Cache.put(this.getClass().getSimpleName(), this); //将当前LoginController的引用放入缓存
     }
 }

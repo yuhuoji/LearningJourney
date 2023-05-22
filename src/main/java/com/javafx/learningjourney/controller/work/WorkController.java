@@ -1,4 +1,4 @@
-package com.javafx.learningjourney.controller;
+package com.javafx.learningjourney.controller.work;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

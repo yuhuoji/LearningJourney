@@ -8,7 +8,7 @@
 
 <!--科研项目页面-->
 
-<BorderPane fx:id="mainContent" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.learningjourney.controller.ResearchController">
+<BorderPane fx:id="mainContent" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.learningjourney.controller.research.ResearchController">
     <bottom>
         <AnchorPane prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <Button fx:id="researchViewTestButton" mnemonicParsing="false" onAction="#onClickTest" text="researchButton" />

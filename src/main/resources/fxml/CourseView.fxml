@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <!--课程资料页面-->
 <BorderPane fx:id="mainContent" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.javafx.learningjourney.controller.CourseController">
+            fx:controller="com.javafx.learningjourney.controller.course.CourseController">
     <top>
         <FlowPane prefHeight="98.0" prefWidth="425.0" BorderPane.alignment="CENTER">
             <ImageView fx:id="courseViewSearchImage">

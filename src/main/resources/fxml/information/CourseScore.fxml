@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <!--课程分数页面-->
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.javafx.learningjourney.controller.information.CourseScoreController" prefHeight="400.0"
+            fx:controller="com.javafx.learningjourney.controller.course.CourseScoreController" prefHeight="400.0"
             prefWidth="600.0">
 
 </BorderPane>

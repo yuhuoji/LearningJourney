@@ -1,4 +1,4 @@
-package com.javafx.learningjourney.controller;
+package com.javafx.learningjourney.controller.course;
 
 import com.javafx.learningjourney.JavaFXApplication;
 import com.javafx.learningjourney.controller.component.RectangleItemController;

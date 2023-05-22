@@ -1,4 +1,4 @@
-package com.javafx.learningjourney.controller.dialog;
+package com.javafx.learningjourney.controller.course;
 
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
@@ -42,6 +42,18 @@ public class StatisticDialogController {
 
     @FXML
     private void initialize() {
+        ToggleGroup toggleGroup = new ToggleGroup();
+        statisticButton.setToggleGroup(toggleGroup);
+        curveButton.setToggleGroup(toggleGroup);
+        informationButton.setToggleGroup(toggleGroup);
+
+        toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                // 当没有按钮被选中时，将所有按钮都设置为未选中状态
+                toggleGroup.getToggles().forEach(toggle -> ((ToggleButton) toggle).setSelected(false));
+            }
+        });
+
         // 设置ToggleButton按钮的事件处理程序
         statisticButton.setOnAction(event -> handleButtonAction(statisticButton));
         curveButton.setOnAction(event -> handleButtonAction(curveButton));

@@ -3,8 +3,6 @@
 
 
 
-
-
 ## Table of Contents
 
 ------
@@ -13,7 +11,7 @@
 
 
 
-## Background 项目简介
+## Background 
 
 ------
 
@@ -21,31 +19,15 @@ Your team will develop a Learning Journey Application for BUPT International Sch
 
 
 
-## 系统设计
+## Interface preview
 
 ------
 
-
-
-## 项目开发环境
-
-------
+Please check [User Manual](./USER MANUAL.md)
 
 
 
-##  项目结构
-
-------
-
-
-
-## 界面预览
-
-------
-
-
-
-## Install
+## Quickstart
 
 ------
 
@@ -53,19 +35,27 @@ Your team will develop a Learning Journey Application for BUPT International Sch
 install
 ```
 
-
-
-## Usage
-
-------
+### Usage
 
 ```js
-Operate JavaFXApplication.java
+Run JavaFXApplication.java
 ```
 
 
 
-## Contributing
+## System design
+
+------
+
+
+
+##  Project structure
+
+------
+
+
+
+## Contributors
 
 ------
 

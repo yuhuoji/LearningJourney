@@ -1,4 +1,4 @@
-package com.javafx.learningjourney.controller;
+package com.javafx.learningjourney.controller.internship;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
