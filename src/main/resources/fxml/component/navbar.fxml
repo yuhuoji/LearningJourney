@@ -4,31 +4,30 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+
 <!--顶栏-->
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-       <MenuBar fx:id="menuBar">
-         <menus>
-           <Menu mnemonicParsing="false" text="File">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Open" />
-               <MenuItem mnemonicParsing="false" text="Export" />
-             </items>
-           </Menu>
-           <Menu mnemonicParsing="false" text="Edit">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Add" />
-               <MenuItem mnemonicParsing="false" text="Delete" />
-             </items>
-           </Menu>
-           <Menu mnemonicParsing="false" text="Help">
-             <items>
-               <MenuItem mnemonicParsing="false" text="Help" />
-               <MenuItem mnemonicParsing="false" text="About" />
-             </items>
-           </Menu>
-         </menus>
-       </MenuBar>
-    </children>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.learningjourney.controller.component.NavbarController">
+    <MenuBar fx:id="menuBar">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#handleOpen" text="Open" />
+                    <MenuItem mnemonicParsing="false" text="Export" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Add" />
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                    <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleAbout" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
 </AnchorPane>

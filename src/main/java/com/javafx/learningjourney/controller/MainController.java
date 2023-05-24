@@ -3,13 +3,10 @@ package com.javafx.learningjourney.controller;
 import com.javafx.learningjourney.dao.FileDAO;
 import com.javafx.learningjourney.dao.impl.FileDAOImpl;
 import com.javafx.learningjourney.util.Cache;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -24,20 +21,46 @@ public class MainController {
     @FXML
     private Pane mainContent; ////切换页面的位置
     @FXML
-    private BorderPane borderPane;
-    @FXML
     private AnchorPane navbar; //navbar.fxml
     @FXML
-    private SplitPane splitPane;
-    @FXML
     private AnchorPane sidebar; //sidebar.fxml
-    @FXML
-    private BorderPane courseView; //CourseView.fxml
-    @FXML
-    private Button mainTestButton;
 
     public MainController() {
         this.fileDAO = new FileDAOImpl();
+    }
+
+    @FXML
+    private void initialize() {
+        System.out.println("main initialize");
+
+        Cache.put(this.getClass().getSimpleName(), this); //将MainController的引用放入缓存
+
+        Cache.put("mainContent", mainContent); //将页面替换的根节点放入缓存
+
+        loadSidebarTreeView(); //init sidebar
+
+        Cache.put("currentView", "CourseView"); //update current view
+        Path currentPath = Paths.get(((Path) Cache.get("currentPath")).toString(), "Course");
+        System.out.println("currentPath = " + currentPath);
+        Cache.put("currentPath", currentPath); //update current path
+        Node newNode = loadFXML("fxml/course/CourseView.fxml");
+        System.out.println("newNode = " + newNode);
+
+        Pane root = (Pane) Cache.get("mainContent");
+        root.getChildren().clear();
+        root.getChildren().add(newNode);
+
+
+        System.out.println("Navbar: " + navbar);
+        System.out.println("Sidebar: " + sidebar);
+//        // 通过id获取sidebar中的openMenuItem
+        System.out.println("Node = " + navbar.lookup("#openMenuItem"));
+        System.out.println("Node = " + sidebar.lookup("#menuTreeView"));
+//        navbar.lookup("#openMenuItem").setOnMouseClicked(event -> {
+//            System.out.println("openMenuItem clicked");
+//            // 处理 "Open" 按钮的点击事件
+//            // 在这里编写打开文件的逻辑
+//        });
     }
 
     /**
@@ -45,7 +68,7 @@ public class MainController {
      */
     private void loadSidebarTreeView() {
         System.out.println("loadSidebarTreeView");
-     //   System.out.println("currentPath = " + Cache.get("currentPath"));
+        //   System.out.println("currentPath = " + Cache.get("currentPath"));
         //new folders
         fileDAO.createDirectory((Path) Cache.get("currentPath"), "Course");
         fileDAO.createDirectory((Path) Cache.get("currentPath"), "Internship");
@@ -78,49 +101,18 @@ public class MainController {
                 Cache.put("currentPath", Paths.get(
                         ((Path) (Cache.get("folderRootPath"))).toString(), selectedPath.toString())
                 ); //update current path
-                Node newNode = loadFXML("fxml/" + selectedPath + "View.fxml");
+                Node newNode = loadFXML("fxml/" + selectedPath + "/" + selectedPath + "View.fxml");
                 Pane root = (Pane) Cache.get("mainContent");
                 root.getChildren().clear();
                 root.getChildren().add(newNode);
             }
-
         });
-
-    }
-
-    //click
-    @FXML
-    public void onClick() {
-        System.out.println("MainView.fxml test");
-
     }
 
     @FXML
-    private void onClickTestSide() {
-        System.out.println("onClickTestSide");
+    public void handleOpen(ActionEvent event) {
+        // 处理 "Open" 按钮的点击事件
+        // 在这里编写打开文件的逻辑
     }
 
-    @FXML
-    public void initialize() {
-        System.out.println("main initialize");
-
-        Cache.put(this.getClass().getSimpleName(), this); //将MainController的引用放入缓存
-
-        Cache.put("mainContent", mainContent); //将页面替换的根节点放入缓存
-
-        splitPane.setDividerPositions(0.2); //将splitPane分隔条位置设置为20%
-        loadSidebarTreeView(); //init sidebar
-
-        Cache.put("currentView", "CourseView"); //update current view
-        Path currentPath = Paths.get(((Path) Cache.get("currentPath")).toString(), "Course");
-        System.out.println("currentPath = " + currentPath);
-        Cache.put("currentPath", currentPath); //update current path
-        Node newNode = loadFXML("fxml/CourseView.fxml");
-        System.out.println("newNode = " + newNode);
-
-        Pane root = (Pane) Cache.get("mainContent");
-        root.getChildren().clear();
-        root.getChildren().add(newNode);
-
-    }
 }

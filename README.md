@@ -27,15 +27,9 @@ Please check [User Manual](./USER MANUAL.md)
 
 
 
-## Quickstart
+## Quick start
 
 ------
-
-```js
-install
-```
-
-### Usage
 
 ```js
 Run JavaFXApplication.java

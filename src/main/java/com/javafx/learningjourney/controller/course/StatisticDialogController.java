@@ -7,6 +7,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
@@ -14,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.util.StringConverter;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -58,6 +62,10 @@ public class StatisticDialogController {
         statisticButton.setOnAction(event -> handleButtonAction(statisticButton));
         curveButton.setOnAction(event -> handleButtonAction(curveButton));
         informationButton.setOnAction(event -> handleButtonAction(informationButton));
+
+        statisticButton.setSelected(true); // 默认选中统计按钮
+        handleButtonAction(statisticButton); // 默认显示统计页面
+
         Cache.put("contentPane", contentPane);
     }
 
@@ -83,6 +91,7 @@ public class StatisticDialogController {
 
     /**
      * Grade statistics table
+     *
      * @return Grade statistics root node
      */
     private Pane statistic() {
@@ -220,7 +229,7 @@ public class StatisticDialogController {
     /**
      * Save existing data in the table to a CSV file
      *
-     * @param filePath      CSV file path
+     * @param filePath  CSV file path
      * @param tableData current table data
      * @param tableView table view
      */
@@ -249,23 +258,74 @@ public class StatisticDialogController {
 
     /**
      * Grade curve
+     *
      * @return Root node
      */
     private Pane curve() {
-//        Button loadButton = new Button("加载CSV");
-//        loadButton.setOnAction(event -> loadCSVFile());
-//
-//        Button saveButton = new Button("保存");
-//        saveButton.setOnAction(event -> saveCSVFile());
-//
-//        VBox vbox = new VBox(loadButton, saveButton, tableView);
+        // 创建 x 轴和 y 轴
+        NumberAxis xAxis = new NumberAxis();
+        NumberAxis yAxis = new NumberAxis(0, 100, 20);
+
+        // 创建折线图对象
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setTitle("Average line graph");
+
+        // 设置横坐标的文字
+        xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+            @Override
+            public String toString(Number object) {
+                int value = object.intValue();
+                switch (value) {
+                    case 1:
+                        return "The first semester";
+                    case 2:
+                        return "The second semester";
+                    case 3:
+                        return "The third semester";
+                    case 4:
+                        return "The fourth semester";
+                    case 5:
+                        return "The fifth semester";
+                    case 6:
+                        return "The sixth semester";
+                    default:
+                        return "";
+                }
+            }
+
+            @Override
+            public Number fromString(String string) {
+                // 不需要实现此方法
+                return null;
+            }
+        });
+
+        // 创建数据系列
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        series.setName("Average score");
+
+        // 添加数据点
+        series.getData().add(new XYChart.Data<>(1, 86.5));
+        series.getData().add(new XYChart.Data<>(2, 88.3));
+        series.getData().add(new XYChart.Data<>(3, 88.3));
+        series.getData().add(new XYChart.Data<>(4, 89.3));
+        series.getData().add(new XYChart.Data<>(5, 90.2));
+        series.getData().add(new XYChart.Data<>(6, 91.4));
+
+        // 将数据系列添加到折线图中
+        lineChart.getData().add(series);
+
+        // 创建 Pane 并将折线图添加到 Pane 中
+        Pane pane = new Pane();
+        pane.getChildren().add(lineChart);
 
         //TODO @date 2023-05-18 加载表格
-        return new Pane();
+        return pane;
     }
 
     /**
      * Statistical information on average scores and GPA
+     *
      * @return Root node
      */
     private Pane information() {

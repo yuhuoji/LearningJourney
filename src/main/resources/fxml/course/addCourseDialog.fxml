@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Line?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.javafx.learningjourney.controller.course.AddCourseDialogController"
+            prefHeight="500.0" prefWidth="600.0">
+    <top>
+        <VBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="20.0">
+                <ToggleButton fx:id="basicButton" contentDisplay="CENTER" text="Basic information"/>
+                <ToggleButton fx:id="courseMaterialsButton" contentDisplay="CENTER" text="Course materials"/>
+                <ToggleButton fx:id="otherButton" contentDisplay="CENTER" text="Other information"/>
+            </HBox>
+            <Line endX="600" strokeWidth="3.0"/>
+        </VBox>
+    </top>
+    <center>
+        <Pane fx:id="contentPane" prefHeight="450.0" prefWidth="600.0"/>
+    </center>
+</BorderPane>

@@ -73,7 +73,7 @@ public class CourseController {
 
         for (TreeItem<Path> child : rootItem.getChildren()) { //遍历子节点
             String folderName = child.getValue().toString();
-            System.out.println("Folder Name: " + folderName);
+//            System.out.println("Folder Name: " + folderName);
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(JavaFXApplication.class.getClassLoader().getResource("fxml/component/RectangleItem.fxml"));
@@ -117,7 +117,7 @@ public class CourseController {
 //                    System.out.println("newPath: " + newPath);
                     Cache.put("currentPath", newPath); //update current path
 
-                    Node newNode = loadFXML("fxml/information/CourseInformation.fxml");
+                    Node newNode = loadFXML("fxml/course/CourseInformation.fxml");
                     Pane root = (Pane) Cache.get("mainContent");
                     root.getChildren().clear();
                     root.getChildren().add(newNode);
@@ -139,7 +139,7 @@ public class CourseController {
         // 创建一个新的舞台用于弹窗
         Stage dialogStage = new Stage();
         Cache.put("dialogStage", dialogStage);
-        Node dialogRoot = loadFXML("fxml/dialog/statisticDialog.fxml");
+        Node dialogRoot = loadFXML("fxml/course/StatisticDialog.fxml");
         Scene dialogScene = new Scene((Parent) dialogRoot);
         dialogStage.setScene(dialogScene);
         dialogStage.initModality(Modality.APPLICATION_MODAL);
@@ -150,11 +150,13 @@ public class CourseController {
     public void onClickAdd() {
         System.out.println("onClickAdd");
 
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Add a course");
-        alert.setHeaderText("Add a course");
-        alert.setContentText("Add a course");
-        alert.showAndWait();
+        Stage dialogStage = new Stage();
+        Cache.put("dialogStage", dialogStage);
+        Node dialogRoot = loadFXML("fxml/course/AddCourseDialog.fxml");
+        Scene dialogScene = new Scene((Parent) dialogRoot);
+        dialogStage.setScene(dialogScene);
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.showAndWait();
     }
 
 }
