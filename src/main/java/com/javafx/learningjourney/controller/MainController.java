@@ -50,17 +50,6 @@ public class MainController {
         root.getChildren().clear();
         root.getChildren().add(newNode);
 
-
-        System.out.println("Navbar: " + navbar);
-        System.out.println("Sidebar: " + sidebar);
-//        // 通过id获取sidebar中的openMenuItem
-        System.out.println("Node = " + navbar.lookup("#openMenuItem"));
-        System.out.println("Node = " + sidebar.lookup("#menuTreeView"));
-//        navbar.lookup("#openMenuItem").setOnMouseClicked(event -> {
-//            System.out.println("openMenuItem clicked");
-//            // 处理 "Open" 按钮的点击事件
-//            // 在这里编写打开文件的逻辑
-//        });
     }
 
     /**
