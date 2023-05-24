@@ -53,7 +53,7 @@ public class MainController {
     }
 
     /**
-     * 加载侧边栏的TreeView并设置点击事件
+     * Load the sidebar TreeView and set the click event
      */
     private void loadSidebarTreeView() {
         System.out.println("loadSidebarTreeView");

@@ -1,0 +1,118 @@
+卷 Windows-SSD 的文件夹 PATH 列表
+卷序列号为 C8A9-3E35
+C:.
+│  tree.txt
+│  
+├─main
+│  ├─java
+│  │  └─com
+│  │      └─javafx
+│  │          └─learningjourney
+│  │              │  JavaFXApplication.java
+│  │              │  
+│  │              ├─controller
+│  │              │  │  LoginController.java
+│  │              │  │  MainController.java
+│  │              │  │  package-info.java
+│  │              │  │  
+│  │              │  ├─component
+│  │              │  │      NavbarController.java
+│  │              │  │      package-info.java
+│  │              │  │      RectangleItemController.java
+│  │              │  │      
+│  │              │  ├─course
+│  │              │  │      AddCourseDialogController.java
+│  │              │  │      CourseController.java
+│  │              │  │      CourseInformationController.java
+│  │              │  │      CourseScoreController.java
+│  │              │  │      package-info.java
+│  │              │  │      StatisticDialogController.java
+│  │              │  │      
+│  │              │  ├─internship
+│  │              │  │      InternshipController.java
+│  │              │  │      package-info.java
+│  │              │  │      
+│  │              │  ├─research
+│  │              │  │      package-info.java
+│  │              │  │      ResearchController.java
+│  │              │  │      
+│  │              │  └─work
+│  │              │          package-info.java
+│  │              │          WorkController.java
+│  │              │          
+│  │              ├─dao
+│  │              │  │  FileDAO.java
+│  │              │  │  package-info.java
+│  │              │  │  
+│  │              │  └─impl
+│  │              │          FileDAOImpl.java
+│  │              │          
+│  │              ├─entity
+│  │              │      Course.java
+│  │              │      Internship.java
+│  │              │      package-info.java
+│  │              │      Research.java
+│  │              │      Work.java
+│  │              │      
+│  │              ├─service
+│  │              │  │  package-info.java
+│  │              │  │  
+│  │              │  └─impl
+│  │              └─util
+│  │                      Cache.java
+│  │                      JsonUtil.java
+│  │                      package-info.java
+│  │                      RootPathUtil.java
+│  │                      
+│  └─resources
+│      ├─fxml
+│      │  │  LoginView.fxml
+│      │  │  MainView.fxml
+│      │  │  
+│      │  ├─component
+│      │  │      navbar.fxml
+│      │  │      RectangleItem.fxml
+│      │  │      sidebar.fxml
+│      │  │      
+│      │  ├─course
+│      │  │      addCourseDialog.fxml
+│      │  │      CourseInformation.fxml
+│      │  │      CourseScore.fxml
+│      │  │      CourseView.fxml
+│      │  │      statisticDialog.fxml
+│      │  │      
+│      │  ├─internship
+│      │  │      InternshipView.fxml
+│      │  │      
+│      │  ├─research
+│      │  │      ResearchView.fxml
+│      │  │      
+│      │  └─work
+│      │          WorkView.fxml
+│      │          
+│      └─static
+│          └─ico
+│                  file.png
+│                  folder.png
+│                  search.png
+│                  
+└─test
+    └─java
+        └─com
+            └─javafx
+                └─learningjourney
+                    ├─dao
+                    │  └─impl
+                    │          FileDAOImplTest.java
+                    │          
+                    ├─entity
+                    │      CourseTest.java
+                    │      InternshipTest.java
+                    │      ResearchTest.java
+                    │      WorkTest.java
+                    │      
+                    └─util
+                            CacheTest.java
+                            JsonUtilTest.java
+                            RootPathUtilTest.java
+                            
