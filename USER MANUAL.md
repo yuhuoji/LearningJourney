@@ -22,6 +22,8 @@
 
 
 
+
+
 ### Course Page
 
 ---
@@ -32,7 +34,7 @@
 
 
 
-### Course-File
+#### Course-File
 
 ---
 
@@ -43,27 +45,31 @@
 
 
 
-### Course-Help
+#### Course-Help
 
 ---
 
-- Click Help to open the README file
-- Click About to open the Github repository
+- Click Help to open the README file.
+- Click About to open the GitHub repository.
 
 <img src=".\doc\image\Course-Help.png" alt="Course" style="zoom:67%;" />
 
-- Click Statistic to open the course score statistics page. 
+- Click "Statistics" to open the course score statistics page. 
+
+- Click on the "+" button to add a new course.
+
+- Select a specific course and click on it to enter the details page.
 
   
 
-### Statistics Dialog
+#### Statistics Dialog
 
 ---
 
-- By default, the Score statistics page is displayed when the popover window opens.
-- By default, popovers open csv files that store all course information.
+- By default, the score statistics page is displayed when the popup window opens, and it loads the CSV file that stores all course information.
+- You can also click "Load" to load the CSV file you want to view.
 - You can double-click on this page to modify.
-- Finally click Save to save the changes to a file.
+- Finally click "Save" to save the changes to a file.
 
 <img src=".\doc\image\Dialog1.png" alt="Course" style="zoom:67%;" />
 
@@ -75,7 +81,7 @@
 
 
 
-### Added Course Dialog
+#### Add Course Dialog
 
 ------
 
@@ -90,20 +96,37 @@
 
 
 
-### Course-Information
+#### Course Information Page
 
 ---
 
-- Course details page.
+- This page displays detailed information about a specific course.
 - In the middle of the page, you can view relevant materials for this course.
 - Details about this course are displayed on the right side of the page.
 
 <img src=".\doc\image\Course-Information1.png" alt="Course" style="zoom:67%;" />
 
-- In the drop-down box, right-click to open the menu, click "add" and select the file you want to add.
+- In the drop-down box, right-click to open the menu, click "add" and then select the file you want to add.
 
 <img src=".\doc\image\Course-Information2.png" alt="Course" style="zoom:67%;" />
 
 - Right-click on the file you want to delete to open the menu and click "Delete" to delete the file from this section.
 
 <img src=".\doc\image\Course-Information3.png" alt="Course" style="zoom:67%;" />
+
+### Internship Page
+
+---
+
+
+
+### Research Page
+
+---
+
+
+
+### Work Page
+
+---
+

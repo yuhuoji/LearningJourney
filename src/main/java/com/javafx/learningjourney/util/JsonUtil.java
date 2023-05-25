@@ -16,7 +16,7 @@ public class JsonUtil {
      * Use the Jackson library to parse JSON objects into maps
      *
      * @param jsonFilePath json file path
-     * @return Map<key, value> object
+     * @return map of json objects
      */
     public static Map<String, Object> parseJsonFileToMap(Path jsonFilePath) {
         Map<String, Object> jsonMap = new HashMap<>();

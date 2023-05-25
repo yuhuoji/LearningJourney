@@ -19,6 +19,22 @@ Your team will develop a Learning Journey Application for BUPT International Sch
 
 
 
+## Languages and Tools
+
+------
+
+```HTML
+<p align="left"> 
+    <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>  </a> 
+    <a href="https://www.java.com" target="_blank" rel="noreferrer"> 
+    <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/>
+    </a>
+</p>
+```
+
+
+
 ## Interface preview
 
 ------
@@ -31,16 +47,29 @@ Please check [User Manual](./USER MANUAL.md)
 
 ------
 
-```js
+1. Make sure your development environment meets the following requirements:
 
-Run JavaFXApplication.java
-```
+   - Java Development Kit (JDK) 8 or higher.
 
+   - Apache Maven 3.0 or higher.
 
+2. Clone the repository to your local machine:
 
-## System design
+   ```bash
+   git clone https://github.com/yuhuoji/LearningJourney
+   ```
 
-------
+3. Open a terminal or command line interface and navigate to the project's root directory.
+
+4. Execute the following Maven command to compile and run the project:
+
+   ```shell
+   mvn javafx:run
+   ```
+
+   This command will use the Maven plugin to launch the JavaFX application.
+
+5. Once the program starts successfully, you will see the user interface of the JavaFX application.
 
 
 
@@ -137,11 +166,10 @@ Run JavaFXApplication.java
 │      │          
 │      └─static
 │          └─ico
-│                  file.png
-│                  folder.png
-│                  search.png
 │                  
 └─test
+
+
 
 ## Contributors
 
@@ -160,4 +188,4 @@ Run JavaFXApplication.java
 
 ------
 
-[MIT]
+[MIT](./LICENSE)

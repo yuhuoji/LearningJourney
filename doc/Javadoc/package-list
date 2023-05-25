@@ -1,0 +1,11 @@
+com.javafx.learningjourney
+com.javafx.learningjourney.controller
+com.javafx.learningjourney.controller.component
+com.javafx.learningjourney.controller.course
+com.javafx.learningjourney.controller.internship
+com.javafx.learningjourney.controller.research
+com.javafx.learningjourney.controller.work
+com.javafx.learningjourney.dao
+com.javafx.learningjourney.dao.impl
+com.javafx.learningjourney.entity
+com.javafx.learningjourney.util
