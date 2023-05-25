@@ -7,8 +7,18 @@
 ## Table of Contents
 
 ------
-
-[TOC]
+- [USER MANUAL](#user-manual)
+  - [Table of Contents](#table-of-contents)
+    - [Login page](#login-page)
+    - [Course Page](#course-page)
+      - [Course-File](#course-file)
+      - [Course-Help](#course-help)
+      - [Statistics Dialog](#statistics-dialog)
+      - [Add Course Dialog](#add-course-dialog)
+      - [Course Information Page](#course-information-page)
+    - [Internship Page](#internship-page)
+    - [Research Page](#research-page)
+    - [Work Page](#work-page)
 
 
 

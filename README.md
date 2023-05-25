@@ -6,8 +6,15 @@
 ## Table of Contents
 
 ------
-
-[TOC]
+- [Learning Journey](#learning-journey)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Languages and Tools](#languages-and-tools)
+  - [Interface preview](#interface-preview)
+  - [Quick start](#quick-start)
+  - [Project structure](#project-structure)
+  - [Contributors](#contributors)
+  - [License](#license)
 
 
 
@@ -59,9 +66,11 @@ Please check [User Manual](./USER MANUAL.md)
    git clone https://github.com/yuhuoji/LearningJourney
    ```
 
-3. Open a terminal or command line interface and navigate to the project's root directory.
+3. Extract the file "doc/LearningJourneyFiles.rar" to the "target" folder. After extraction, the "Course", "Internship", and other folders should be located in "target/LearningJourneyFiles".
 
-4. Execute the following Maven command to compile and run the project:
+4. Open a terminal or command line interface and navigate to the project's root directory.
+
+5. Execute the following Maven command to compile and run the project:
 
    ```shell
    mvn javafx:run
@@ -69,7 +78,7 @@ Please check [User Manual](./USER MANUAL.md)
 
    This command will use the Maven plugin to launch the JavaFX application.
 
-5. Once the program starts successfully, you will see the user interface of the JavaFX application.
+6. Once the program starts successfully, you will see the user interface of the JavaFX application.
 
 
 
@@ -77,6 +86,7 @@ Please check [User Manual](./USER MANUAL.md)
 
 ------
 
+```
 ├─main
 │  ├─java
 │  │  └─com
@@ -168,6 +178,7 @@ Please check [User Manual](./USER MANUAL.md)
 │          └─ico
 │                  
 └─test
+```
 
 
 
@@ -175,14 +186,12 @@ Please check [User Manual](./USER MANUAL.md)
 
 ------
 
-1. [**yuhuoji**](https://github.com/yuhuoji)
 1. [**askmmmm**](https://github.com/askmmmm)
 1. [**Giggsss997**](https://github.com/Giggsss997)
 1. [**makino-w**](https://github.com/makino-w)
 1. [**MengGith**](https://github.com/MengGith)
 1. [**randlyoyo**](https://github.com/randlyoyo)
-
-
+1. [**yuhuoji**](https://github.com/yuhuoji)
 
 ## License
 
