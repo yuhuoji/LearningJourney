@@ -9,9 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * 测试文件夹在target下的LearningJourneyFiles下
- */
 class FileDAOImplTest {
 
     private static Path testFolderPath;
@@ -23,7 +20,7 @@ class FileDAOImplTest {
         testFolderPath = RootPathUtil.getFolderRootPath();
     }
 
-    //可以先运行这个方法，再测试其他方法
+    //You can run this method first, and then test other methods
     @Test
     void testCreateMoreFiles() {
         fileDAO.createDirectory(testFolderPath,"Course");
@@ -56,7 +53,7 @@ class FileDAOImplTest {
         fileDAO.emptyFolder(emptyPath);
     }
 
-    //最后可以运行这个方法清空文件夹
+    //Finally, you can run this method to empty the folder
     @Test
     void testDeleteFileOrFolder() {
         Path deletePath = Paths.get(testFolderPath.toString(), "test");
@@ -69,7 +66,6 @@ class FileDAOImplTest {
 
         Path root = Paths.get(testFolderPath.toString(),"test");
         System.out.println(root.getFileName().toString());
-
     }
 
     @Test
@@ -108,7 +104,6 @@ class FileDAOImplTest {
         System.out.println(fileDAO.checkFileOrFolderExistence(Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2")));
         System.out.println(fileDAO.checkFileOrFolderExistence(Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2"), "test2.log"));
         System.out.println(fileDAO.checkFileOrFolderExistence(Paths.get(testFolderPath.toString(), "test", "data", "test1", "test2"), "test33.log"));
-
     }
 
     @Test
@@ -127,10 +122,8 @@ class FileDAOImplTest {
 
     @Test
     void testGetRootDirectoryPath() {
-
         System.out.println(RootPathUtil.getRootPath());
         System.out.println(RootPathUtil.getFolderRootPath());
-
     }
 
 }

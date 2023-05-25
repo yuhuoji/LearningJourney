@@ -22,7 +22,9 @@
 
 ------
 
-Your team will develop a Learning Journey Application for BUPT International School  students.
+Learning Journey is an off-line software designed for BUPT international college students to help them store and manage all kinds of information and documents they encounter in college study and life, providing convenience for their study and life.     
+
+Learning Journey can not only help students manage courseware, homework, grades, notes and other contents in the class, but also help students manage the information of various extracurricular activities, such as scientific research information, internship information, positions and so on.
 
 
 
