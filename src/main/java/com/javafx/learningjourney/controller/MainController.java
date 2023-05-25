@@ -90,7 +90,7 @@ public class MainController {
                 Cache.put("currentPath", Paths.get(
                         ((Path) (Cache.get("folderRootPath"))).toString(), selectedPath.toString())
                 ); //update current path
-                Node newNode = loadFXML("fxml/" + selectedPath + "/" + selectedPath + "View.fxml");
+                Node newNode = loadFXML("fxml/" + selectedPath.toString().toLowerCase() + "/" + selectedPath + "View.fxml");
                 Pane root = (Pane) Cache.get("mainContent");
                 root.getChildren().clear();
                 root.getChildren().add(newNode);

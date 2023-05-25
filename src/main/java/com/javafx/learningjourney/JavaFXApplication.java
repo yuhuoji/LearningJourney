@@ -33,9 +33,9 @@ public class JavaFXApplication extends Application {
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-//            System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
+            System.out.println(JavaFXApplication.class.getClassLoader().getResource(fxml));
             fxmlLoader.setLocation(Objects.requireNonNull(JavaFXApplication.class.getClassLoader().getResource(fxml))); //set fxml file path
-            //  System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
+              System.out.println("fxmlLoader.getLocation() = " + fxmlLoader.getLocation());
             root = fxmlLoader.load(); //load fxml file
 
         } catch (IOException e) {

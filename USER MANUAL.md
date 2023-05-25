@@ -118,13 +118,13 @@
 
 ---
 
-
+<img src=".\doc\image\Internship.png" alt="Course" style="zoom:67%;" />
 
 ### Research Page
 
 ---
 
-
+<img src=".\doc\image\Research.png" alt="Course" style="zoom:67%;" />
 
 ### Work Page
 
