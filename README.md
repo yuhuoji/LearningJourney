@@ -47,7 +47,7 @@ Learning Journey can not only help students manage courseware, homework, grades,
 
 ------
 
-Please check [User Manual](./USER MANUAL.md)
+Please check [User Manual](USER MANUAL.md)
 
 
 
