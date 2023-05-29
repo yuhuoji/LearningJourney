@@ -1,11 +1,8 @@
 # Learning Journey
 ------
 
-
-
 ## Table of Contents
 
-------
 - [Learning Journey](#learning-journey)
   - [Table of Contents](#table-of-contents)
   - [Background](#background)
@@ -18,9 +15,9 @@
 
 
 
-## Background 
+---
 
-------
+## Background 
 
 Learning Journey is an off-line software designed for BUPT international college students to help them store and manage all kinds of information and documents they encounter in college study and life, providing convenience for their study and life.     
 
@@ -28,9 +25,9 @@ Learning Journey can not only help students manage courseware, homework, grades,
 
 
 
-## Languages and Tools
+---
 
-------
+## Languages and Tools
 
 
 <p align="left"> 
@@ -42,18 +39,18 @@ Learning Journey can not only help students manage courseware, homework, grades,
 </p>
 
 
+---
+
 
 ## Interface preview
-
-------
 
 Please check [User Manual](USER-MANUAL.md) or [JavaDoc](./doc/JavaDoc)
 
 
 
-## Quick start
+---
 
-------
+## Quick start
 
 1. Make sure your development environment meets the following requirements:
 
@@ -83,9 +80,9 @@ Please check [User Manual](USER-MANUAL.md) or [JavaDoc](./doc/JavaDoc)
 
 
 
-##  Project structure
+---
 
-------
+##  Project structure
 
 ```
 ├─main
@@ -183,9 +180,9 @@ Please check [User Manual](USER-MANUAL.md) or [JavaDoc](./doc/JavaDoc)
 
 
 
-## Contributors
+---
 
-------
+## Contributors
 
 1. [**askmmmm**](https://github.com/askmmmm)
 1. [**Giggsss997**](https://github.com/Giggsss997)
@@ -194,8 +191,10 @@ Please check [User Manual](USER-MANUAL.md) or [JavaDoc](./doc/JavaDoc)
 1. [**randlyoyo**](https://github.com/randlyoyo)
 1. [**yuhuoji**](https://github.com/yuhuoji)
 
-## License
 
-------
+
+---
+
+## License
 
 [MIT](./LICENSE)

@@ -2,11 +2,8 @@
 
 ------
 
-
-
 ## Table of Contents
 
-------
 - [USER MANUAL](#user-manual)
   - [Table of Contents](#table-of-contents)
     - [Login page](#login-page)
@@ -22,9 +19,9 @@
 
 
 
-### Login page
+---
 
-------
+### Login page
 
 - Click the button to enter.
 
@@ -34,9 +31,9 @@
 
 
 
-### Course Page
-
 ---
+
+### Course Page
 
 - Course management page
 
@@ -44,9 +41,9 @@
 
 
 
-#### Course-File
-
 ---
+
+#### Course-File
 
 - Click Open to open the folder where the project stores the files
 - Click Export to compress and export the project file
@@ -55,9 +52,9 @@
 
 
 
-#### Course-Help
-
 ---
+
+#### Course-Help
 
 - Click Help to open the README file.
 - Click About to open the GitHub repository.
@@ -70,11 +67,10 @@
 
 - Select a specific course and click on it to enter the details page.
 
-  
-
-#### Statistics Dialog
 
 ---
+
+#### Statistics Dialog
 
 - By default, the score statistics page is displayed when the popup window opens, and it loads the CSV file that stores all course information.
 - You can also click "Load" to load the CSV file you want to view.
@@ -91,9 +87,9 @@
 
 
 
-#### Add Course Dialog
+---
 
-------
+#### Add Course Dialog
 
 - By default, the new course page is opened by entering the basic course information.
 
@@ -106,9 +102,11 @@
 
 
 
-#### Course Information Page
-
 ---
+
+
+
+#### Course Information Page
 
 - This page displays detailed information about a specific course.
 - In the middle of the page, you can view relevant materials for this course.
@@ -124,19 +122,25 @@
 
 <img src=".\doc\image\Course-Information3.png" alt="Course" style="zoom:67%;" />
 
-### Internship Page
+
 
 ---
+
+### Internship Page
 
 <img src=".\doc\image\Internship.png" alt="Course" style="zoom:67%;" />
 
-### Research Page
+
 
 ---
+
+### Research Page
 
 <img src=".\doc\image\Research.png" alt="Course" style="zoom:67%;" />
 
-### Work Page
+
 
 ---
+
+### Work Page
 
