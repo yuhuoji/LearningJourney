@@ -2,17 +2,19 @@ package com.javafx.learningjourney.util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 //TODO 添加过期时间、清除过期数据
+//HashMao线程不安全
 public class Cache {
-    private static final Map<String, Object> cacheMap = new HashMap<>();
+    private static final Map<String, Object> cacheMap = new ConcurrentHashMap<>();
 
-    public static void put(String key, Object value) {
+    public static <T> void put(String key, T value) {
         cacheMap.put(key, value);
     }
 
-    public static Object get(String key) {
-        return cacheMap.get(key);
+    public static <T> T get(String key) {
+        return (T) cacheMap.get(key);
     }
 
     public static void remove(String key) {
